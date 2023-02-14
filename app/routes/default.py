@@ -11,17 +11,17 @@ def aboutus():
     return render_template('aboutus.html')
 
 @app.route('/contact')
-def aboutus():
+def contact():
     return render_template('Contact.html')
 
 @app.route('/resources')
-def aboutus():
+def resources():
     return render_template('Resources.html')
 
 @app.route('/courses')
-def aboutus():
+def courses():
     return render_template('Courses.html')
 
 @app.route('/research')
-def aboutus():
+def research():
     return render_template('Research.html')
