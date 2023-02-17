@@ -11,8 +11,10 @@ from wtforms import StringField, SubmitField, TextAreaField, IntegerField, Selec
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
+    role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
     image = FileField("Image") 
     submit = SubmitField('Post')
+    
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
@@ -24,4 +26,3 @@ class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
 
-role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
