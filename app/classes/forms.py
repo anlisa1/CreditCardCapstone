@@ -23,3 +23,5 @@ class BlogForm(FlaskForm):
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
+
+role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
