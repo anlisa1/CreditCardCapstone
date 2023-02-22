@@ -32,6 +32,7 @@ class User(UserMixin, Document):
     image = FileField()
     prononuns = StringField()
     role = StringField()
+    age = IntField()
     meta = {
         'ordering': ['lname','fname']
     }
@@ -41,6 +42,7 @@ class Blog(Document):
     subject = StringField()
     content = StringField()
     tag = StringField()
+    tag2 = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
