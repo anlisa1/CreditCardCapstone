@@ -24,6 +24,13 @@ class BlogForm(FlaskForm):
     tag2 = StringField('Tag', validators=[DataRequired()])
     submit = SubmitField('Blog')
 
+class CoursesForm(FlaskForm):
+    subject = StringField('Subject', validators=[DataRequired()])
+    content = TextAreaField('Blog', validators=[DataRequired()])
+    tag = StringField('Tag', validators=[DataRequired()])
+    tag2 = StringField('Tag', validators=[DataRequired()])
+    submit = SubmitField('Blog')
+
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
