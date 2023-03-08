@@ -22,6 +22,7 @@ from bson.objectid import ObjectId
 
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
+    courses_completion=[False, False, False, False, False, False, False, False, False]
     gid = StringField(sparse=True, unique=True)
     gname = StringField()
     gprofile_pic = StringField()
@@ -50,16 +51,24 @@ class Blog(Document):
         'ordering': ['-createdate']
     }
 
+# class modules(Document):
+    
+
 class Courses(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
-    subject = StringField()
-    content = StringField()
-    tag = StringField()
-    tag2 = StringField()
+    title = StringField()
+    content1 = StringField()
+    image1 = FileField()
+    content2 = StringField()
+    image2 = FileField()
+    content3= StringField()
+    image3 = FileField()
+    content4=StringField()
+    recap_info = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     meta = {
-        'ordering': ['-createdate']
+        'ordering': ['-createdate'],
     }
 
 class Comment(Document):

@@ -7,7 +7,7 @@ import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired
 from wtforms.fields.html5 import URLField
 from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField
-
+# fields that user can edit, create update
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 

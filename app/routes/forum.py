@@ -24,6 +24,7 @@ def blogList():
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
     return render_template('blogs.html',blogs=blogs)
+    # blogs thats in italics is the one type on template 
 
 # This route will get one specific blog and any comments associated with that blog.  
 # The blogID is a variable that must be passsed as a parameter to the function and 
@@ -36,6 +37,7 @@ def blogList():
 def blog(blogID):
     # retrieve the blog using the blogID
     thisBlog = Blog.objects.get(id=blogID)
+    # get oneea
     # If there are no comments the 'comments' object will have the value 'None'. Comments are 
     # related to blogs meaning that every comment contains a reference to a blog. In this case
     # there is a field on the comment collection called 'blog' that is a reference the Blog
@@ -153,6 +155,7 @@ def blogEdit(blogID):
     form.subject.data = editBlog.subject
     form.content.data = editBlog.content
     form.tag.data = editBlog.tag
+    # fom database, prepopulate the form
 
 
     # Send the user to the blog form that is now filled out with the current information

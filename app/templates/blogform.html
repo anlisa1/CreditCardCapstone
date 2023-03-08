@@ -5,6 +5,9 @@
 
         <form method=post>
             {{ form.hidden_tag() }}
+            <!-- special type of field it makes form more secure -->
+            <!-- even if comment out, jinja always looks at code in brackets -->
+
             <p>
                 {{ form.subject.label }} <br>
                 {{ form.subject(size=64) }}
