@@ -24,12 +24,20 @@ class BlogForm(FlaskForm):
     tag2 = StringField('Tag', validators=[DataRequired()])
     submit = SubmitField('Blog')
 
-class CoursesForm(FlaskForm):
-    subject = StringField('Subject', validators=[DataRequired()])
-    content = TextAreaField('Blog', validators=[DataRequired()])
-    tag = StringField('Tag', validators=[DataRequired()])
-    tag2 = StringField('Tag', validators=[DataRequired()])
-    submit = SubmitField('Blog')
+class ModulesForm(FlaskForm):
+    # author = StringField()
+    title =  StringField('Title Here', validators = [DataRequired()])
+    intro = StringField('Introduction to subject here (put some other content if no intro)',validators=[DataRequired()])
+    content1 = StringField('You can choose to leave empty if you wat image below introduction')
+    image1 = FileField('optional image, no image will be shown if empty')
+    content2 = StringField('for formatting')
+    image2 = FileField('optional image, no image will be shown if empty')
+    content3 = StringField('for formatting')
+    image3 = FileField('optional image, no image will be shown if empty')
+    content4 = StringField('for formatting')
+    recap_info = StringField('A little summary or recap of what happened', validators=[DataRequired()])
+    user_display = SelectField('Display Author', choices=[(),()], validators =[DataRequired()])
+    
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])

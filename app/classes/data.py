@@ -54,21 +54,24 @@ class Blog(Document):
 # class modules(Document):
     
 
-class Courses(Document):
+class Modules(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    user_display = StringField()
     title = StringField()
+    intro = StringField()
     content1 = StringField()
     image1 = FileField()
     content2 = StringField()
     image2 = FileField()
     content3= StringField()
     image3 = FileField()
-    content4=StringField()
+    content4 = StringField()
     recap_info = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     meta = {
         'ordering': ['-createdate'],
+        'display': 'Needs Verification'
     }
 
 class Comment(Document):
