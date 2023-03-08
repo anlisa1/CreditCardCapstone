@@ -18,11 +18,24 @@
             </h5>
             <br><br>
             <p>
-                {{form.intro(placeholder='{{form.intro.label}}', style='width:92%')}}
+                {{form.intro(placeholder='{{form.intro.label}}', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.intro.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+
+            <!-- Content around here and I also neeed to make it so the content is like a html widget. -->
+            
+            <br><br>
+            <div>
+                <p style="font-weight:bolder;"> Recap</p>
+                <p>
+                    {{form.recap(placeholder='{{form.recap.label}}', style='width:92%; color:black; padding:0.5%;')}}
+                    {% for error in form.recap.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
         </form>
     </div>
 {% endblock %}
