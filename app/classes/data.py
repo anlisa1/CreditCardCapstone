@@ -71,7 +71,8 @@ class Modules(Document):
     modify_date = DateTimeField()
     meta = {
         'ordering': ['-createdate'],
-        'display': 'Needs Verification'
+        'display': 'Needs Verification',
+        'Completion':'Null'
     }
 
 class Comment(Document):

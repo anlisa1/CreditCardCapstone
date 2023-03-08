@@ -8,17 +8,17 @@
             <!-- special type of field it makes form more secure -->
             <!-- even if comment out, jinja always looks at code in brackets -->
 
-            <p>
+            <h5 style="text-align:center;">
                 {{ form.subject.label }} <br>
-                {{ form.subject(size=64) }}
+                {{ form.subject(size='100%', placeholder="123", style='text-align:center; color:black; padding:0.5%;') }}
                 <!--List the errors for this field-->
                 {% for error in form.subject.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
-            </p>
-            <p>
+            </h5>
+            <p style="text-align:center;">
                 {{ form.content.label }} <br>
-                {{ form.content(cols=64, rows=10) }}
+                {{ form.content(style='width:92%') }}
                 <!--List the errors for this field-->
                 {% for error in form.content.errors %}
                     <span style="color: red;">[{{ error }}]</span>
