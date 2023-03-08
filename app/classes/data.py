@@ -22,7 +22,6 @@ from bson.objectid import ObjectId
 
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
-    courses_completion=[False, False, False, False, False, False, False, False, False]
     gid = StringField(sparse=True, unique=True)
     gname = StringField()
     gprofile_pic = StringField()
@@ -71,8 +70,6 @@ class Modules(Document):
     modify_date = DateTimeField()
     meta = {
         'ordering': ['-createdate'],
-        'display': 'Needs Verification',
-        'Completion':'Null'
     }
 
 class Comment(Document):

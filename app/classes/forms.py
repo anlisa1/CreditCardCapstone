@@ -35,7 +35,7 @@ class ModulesForm(FlaskForm):
     content3 = StringField('for formatting')
     image3 = FileField('optional image')
     content4 = StringField('for formatting')
-    recap_info = StringField('Summary or Recap Below', validators=[DataRequired()])
+    recap_info = StringField('Summary or Recap Here', validators=[DataRequired()])
     user_display = SelectField('Display Author', choices=[(),()], validators =[DataRequired()])
     
 
