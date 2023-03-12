@@ -12,6 +12,17 @@ from app.utils.secrets import getSecrets
 from flask_moment import Moment
 import base64
 
+# from flask_ckeditor import CKEditor
+
+# ckeditor = CKEditor()
+
+# def create_app():
+#     app = Flask(__name__)
+#     ...
+#     ckeditor.init_app(app)
+#     ...
+#     return app
+
 # Flask app setup
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or os.urandom(24)

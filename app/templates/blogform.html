@@ -7,18 +7,17 @@
             {{ form.hidden_tag() }}
             <!-- special type of field it makes form more secure -->
             <!-- even if comment out, jinja always looks at code in brackets -->
-
-            <h5 style="text-align:center;">
+            <h5 >
                 {{ form.subject.label }} <br>
-                {{ form.subject(size='100%', placeholder="123", style='text-align:center; color:black; padding:0.5%;') }}
+                {{ form.subject(size='50%') }}
                 <!--List the errors for this field-->
                 {% for error in form.subject.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </h5>
-            <p style="text-align:center;">
+            <p >
                 {{ form.content.label }} <br>
-                {{ form.content(style='width:92%;  color:black; padding:0.5%;') }}
+                {{ form.content(cols=64, rows=10) }}
                 <!--List the errors for this field-->
                 {% for error in form.content.errors %}
                     <span style="color: red;">[{{ error }}]</span>
