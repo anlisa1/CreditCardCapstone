@@ -10,5 +10,6 @@ please install this onto the website
 
 Anlisa TD -->  fix add course button, different color (form and modules cret\ation first)
                also form and module --> get ready
-               add module function (working on ck editor so far)
-               accounatbility and progress of module progression
+               (ask wright) 3. add module function (working on ck editor so far)
+               1. mark as done function
+               2. accounatbility and progress of module progression, progress bar of thermometer

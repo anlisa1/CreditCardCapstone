@@ -16,6 +16,8 @@ class ProfileForm(FlaskForm):
     image = FileField("Image") 
     submit = SubmitField('Post')
     
+class MarkasCompleteForm(FlaskForm):
+    mark_completion = SubmitField('Mark as Complete')
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])

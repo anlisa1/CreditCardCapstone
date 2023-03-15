@@ -33,9 +33,11 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     age = IntField()
+    courses_completed=[]
     meta = {
         'ordering': ['lname','fname']
     }
+
     
 class Blog(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
@@ -45,7 +47,6 @@ class Blog(Document):
     tag2 = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
-
     meta = {
         'ordering': ['-createdate']
     }

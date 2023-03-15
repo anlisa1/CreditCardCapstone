@@ -48,6 +48,16 @@
     {% else %}
         <h1 class="display-5">No Comments</h1>
     {% endif %}
+    {% if blog in current_user.courses_completed %}
+            
+    {% else %}
+        <form method=post>
+            {{form.hidden_tag()}}
+            <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
+            </button>
+        </form>
+    {% endif %}
 {% else %}
     <h1 class="display-5">No Blog</h1>
 {% endif %}

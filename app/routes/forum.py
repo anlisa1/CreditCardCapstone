@@ -6,8 +6,8 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Blog, Comment
-from app.classes.forms import BlogForm, CommentForm
+from app.classes.data import Blog, Comment, User
+from app.classes.forms import BlogForm, CommentForm, MarkasCompleteForm
 from flask_login import login_required
 import datetime as dt
 
@@ -31,13 +31,20 @@ def blogList():
 # can then be used in the query to retrieve that blog from the database. This route 
 # is called when the user clicks a link on bloglist.html template.
 # The angle brackets (<>) indicate a variable. 
-@app.route('/blog/<blogID>')
-# This route will only run if the user is logged in.
+
+# if you have a form, you need a method, security issue
+@app.route('/blog/<blogID>', methods=['GET', 'POST'])
+# This route will only run if the user is logged in
 @login_required
 def blog(blogID):
-    # retrieve the blog using the blogID
+    form = MarkasCompleteForm()
+    # retrieve the blog using the blogID (one only)
     thisBlog = Blog.objects.get(id=blogID)
-    # get oneea
+    if form.validate_on_submit():
+        currUser = User.objects.get(id=current_user.id)
+        current_user.courses_completed.append(thisBlog)
+        
+    
     # If there are no comments the 'comments' object will have the value 'None'. Comments are 
     # related to blogs meaning that every comment contains a reference to a blog. In this case
     # there is a field on the comment collection called 'blog' that is a reference the Blog
@@ -45,7 +52,9 @@ def blog(blogID):
     # the blog object (thisBlog in this case) to get all the comments.
     theseComments = Comment.objects(blog=thisBlog)
     # Send the blog object and the comments object to the 'blog.html' template.
-    return render_template('blog.html',blog=thisBlog,comments=theseComments)
+    return render_template('blog.html',blog=thisBlog,comments=theseComments,form=form)
+    #  whta the stuff after tghe hytml file, sending variables to form.
+
 
 # This route will delete a specific blog.  You can only delete the blog if you are the author.
 # <blogID> is a variable sent to this route by the user who clicked on the trash can in the 

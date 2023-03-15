@@ -24,6 +24,6 @@ def courses():
 
 # Here below will be all the original courses link
 
-@app.route("/module<int:id>")
-def module(id):
-  return render_template(f"./modules/module{id}.html")
+# @app.route("/module<int:id>")
+# def module(id):
+#   return render_template(f"./modules/module{id}.html")
