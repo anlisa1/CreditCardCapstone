@@ -47,6 +47,7 @@ class Blog(Document):
     tag2 = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
+    verified_blogs=[]
     meta = {
         'ordering': ['-createdate']
     }

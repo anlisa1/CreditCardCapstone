@@ -13,7 +13,7 @@ please install this onto the website(still learning on the above)
  Anlisa TD ->  fix add course button, different color (form and modules cret\ation first)
                also form and module -> get ready
                (ask wright) 3. add module function (working on ck editor so far)
-               1. mark as done function //
+               1. mark as done function // not applied // function tested in blogs
                2. accounatbility and progress of module progression, progress bar of thermometer
 
 Anlisa -> some notes to recall
@@ -27,8 +27,13 @@ Anlisa - code to maybe reuse and take off of testibg file
         if form.validate_on_submit():
             currUser = User.objects.get(id=current_user.id)
             current_user.courses_completed.append(thisBlog)
+            <!-- if delete the blog that has been marked as complete remove the blog from list too -->
+    if deleteBlog in current_user.courses_completed:
+            current_user.courses_completed.remove(deleteBlog)
+            I will comment all python after words but html cant be as jinja
 
     in html
+        Mark as done button
         {% if blog in current_user.courses_completed %}
             
         {% else %}
