@@ -19,6 +19,9 @@ class ProfileForm(FlaskForm):
 class MarkasCompleteForm(FlaskForm):
     mark_completion = SubmitField('Mark as Complete')
 
+class verifyCourseForm(FlaskForm):
+    verify_course = SubmitField('Validate Course')
+
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = TextAreaField('Blog', validators=[DataRequired()])
@@ -29,6 +32,7 @@ class BlogForm(FlaskForm):
 class ModulesForm(FlaskForm):
     # author = StringField()
     title =  StringField('Title Here', validators = [DataRequired()])
+    cover_image = FileField('Cover image here!!, will not be in the modules but rather will appear in the modules page')
     intro = StringField('Introduction here (put some other content if no intro)',validators=[DataRequired()])
     content1 = StringField('Leave empty if you have styling preferences')
     image1 = FileField('optional image, no image will be shown if empty')

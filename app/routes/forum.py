@@ -7,7 +7,7 @@ import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import Blog, Comment, User
-from app.classes.forms import BlogForm, CommentForm, MarkasCompleteForm
+from app.classes.forms import BlogForm, CommentForm, MarkasCompleteForm, verifyCourseForm
 from flask_login import login_required
 import datetime as dt
 
@@ -38,13 +38,15 @@ def blogList():
 @login_required
 def blog(blogID):
     form = MarkasCompleteForm()
+    # admin_form = verifyCourseForm()
     # retrieve the blog using the blogID (one only)
     thisBlog = Blog.objects.get(id=blogID)
     if form.validate_on_submit():
         currUser = User.objects.get(id=current_user.id)
         current_user.courses_completed.append(thisBlog)
         
-    
+    # if admin_form.validate_on_submit():
+    #     Blog.verified_blogs.append(thisBlog) 
     # If there are no comments the 'comments' object will have the value 'None'. Comments are 
     # related to blogs meaning that every comment contains a reference to a blog. In this case
     # there is a field on the comment collection called 'blog' that is a reference the Blog
@@ -69,6 +71,9 @@ def blogDelete(blogID):
     # check to see if the user that is making this request is the author of the blog.
     # current_user is a variable provided by the 'flask_login' library.
     if current_user == deleteBlog.author:
+        if deleteBlog in current_user.courses_completed:
+            current_user.courses_completed.remove(deleteBlog)
+        # Blog.verified_blogs.remove(thisBlog) 
         # delete the blog using the delete() method from Mongoengine
         deleteBlog.delete()
         # send a message to the user that the blog was deleted.
