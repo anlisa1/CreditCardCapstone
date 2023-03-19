@@ -22,7 +22,8 @@
         {% if blog.author.image %}
             <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(blog.author.image.read())}}">
         {% endif %}
-            {{blog.content}} <br>
+            <!-- |safe allows to proccess code!! -->
+            {{blog.content|safe  }} <br>
             {{blog.tag}}
             {{blog.tag2}}
 
