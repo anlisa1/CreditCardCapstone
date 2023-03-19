@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
+
         <h1></h1>
 
         <form method=post>
@@ -43,5 +44,8 @@
                 {{form.submit()}}
             </p>
         </form>
-        
+<!-- the things neccesary for ckeditor -->
+{{ckeditor.load()}}   
+{{ckeditor.config(name='content',pkg_type='full')}}   
+
 {% endblock %}

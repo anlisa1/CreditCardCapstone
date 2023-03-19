@@ -8,6 +8,8 @@ from wtforms.validators import URL, Email, DataRequired
 from wtforms.fields.html5 import URLField
 from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField
 # fields that user can edit, create update
+from flask_ckeditor import CKEditorField
+
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
@@ -24,7 +26,7 @@ class verifyCourseForm(FlaskForm):
 
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
-    content = TextAreaField('Blog', validators=[DataRequired()])
+    content = CKEditorField('Blog', validators=[DataRequired()])
     tag = StringField('Tag', validators=[DataRequired()])
     tag2 = StringField('Tag2', validators=[DataRequired()])
     submit = SubmitField('Blog')
