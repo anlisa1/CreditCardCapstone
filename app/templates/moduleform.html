@@ -18,24 +18,100 @@
             </h5>
             <br><br>
             <p>
-                {{form.intro(placeholder='{{form.intro.label}}', style='width:92%;  color:black; padding:0.5%;')}}
-                {% for error in form.intro.errors %}
+                {{ form.cover_image.label }}<br>
+                {% if current_user.cover_image %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.cover_image.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "100" src="/static/no_image.png">
+                {% endif %} <br>
+                {{ form.cover_image() }}<br>
+                {% for error in form.cover_image.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.content1(placeholder='{{form.content1.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.content1.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
-
-            <!-- Content around here and I also neeed to make it so the content is like a html widget. -->
-            
-            <br><br>
-            <div>
-                <p style="font-weight:bolder;"> Recap</p>
-                <p>
-                    {{form.recap(placeholder='{{form.recap.label}}', style='width:92%; color:black; padding:0.5%;')}}
-                    {% for error in form.recap.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </p>
-            </div>
+            <p>
+                {{ form.image1.label }}<br>
+                {% if current_user.image1 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image1.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "100" src="">
+                {% endif %} <br>
+                {{ form.image1() }}<br>
+                {% for error in form.image1.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.video1(placeholder='{{form.video1.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.video1.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.content2(placeholder='{{form.content2.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.content2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.image2.label }}<br>
+                {% if current_user.image2 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image2.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "100" src="">
+                {% endif %} <br>
+                {{ form.image2() }}<br>
+                {% for error in form.image2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.video2(placeholder='{{form.video2.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.video2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.content3(placeholder='{{form.content3.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.content3.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.image3.label }}<br>
+                {% if current_user.image3 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image3.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "100" src="">
+                {% endif %} <br>
+                {{ form.image3() }}<br>
+                {% for error in form.image3.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.content4(placeholder='{{form.content4.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.content4.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.video3(placeholder='{{form.video3.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {% for error in form.video3.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                {{form.submit(class='text-light',style="border:none; background-color:#2a7877;")}}
+            </button>
         </form>
     </div>
+    {{ckeditor.load()}}   
+    {{ckeditor.config(name='content',pkg_type='full')}}  
 {% endblock %}

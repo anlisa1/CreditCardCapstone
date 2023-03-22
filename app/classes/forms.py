@@ -34,17 +34,19 @@ class BlogForm(FlaskForm):
 class ModulesForm(FlaskForm):
     # author = StringField()
     title =  StringField('Title Here', validators = [DataRequired()])
-    cover_image = FileField('Cover image here!!, will not be in the modules but rather will appear in the modules page')
-    intro = StringField('Introduction here (put some other content if no intro)',validators=[DataRequired()])
-    content1 = StringField('Leave empty if you have styling preferences')
-    image1 = FileField('optional image, no image will be shown if empty')
-    content2 = StringField('for formatting')
+    cover_image = FileField('Cover image here!!, will not be in the module but rather will appear in the modules page')
+    content1 = CKEditorField('Leave empty if you have styling preferences')
+    image1 = FileField('optional image, no image will be shown if empty, format is https://www.youtube.com/embed/tgbNymZ7vqY if orginginal link is https://www.youtube.com/tgbNymZ7vqY')
+    video1 = StringField('please input link to youtube video here, leave empty if none')
+    content2 = CKEditorField('for formatting')
     image2 = FileField('optional image')
-    content3 = StringField('for formatting')
+    video2 = StringField('please input link to youtube video here, leave empty if none')
+    content3 = CKEditorField('for formatting')
     image3 = FileField('optional image')
-    content4 = StringField('for formatting')
-    recap_info = StringField('Summary or Recap Here', validators=[DataRequired()])
-    user_display = SelectField('Display Author', choices=[(),()], validators =[DataRequired()])
+    content4 = CKEditorField('for formatting')
+    video3 = StringField('please input link to youtube video here, leave empty if none')
+    submit = SubmitField('Create Module')
+    # user_display = SelectField('Display Author', choices=[(),()], validators =[DataRequired()])
     
 
 class CommentForm(FlaskForm):

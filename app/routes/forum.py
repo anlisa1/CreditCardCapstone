@@ -6,7 +6,7 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Blog, Comment, User
+from app.classes.data import Blog, Comment, User, total_Data
 from app.classes.forms import BlogForm, CommentForm, MarkasCompleteForm, verifyCourseForm
 from flask_login import login_required
 import datetime as dt
@@ -23,7 +23,9 @@ def blogList():
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
-    return render_template('blogs.html',blogs=blogs)
+    verified = total_Data.verified_blogs
+    courses_complete = len(current_user.courses_completed)
+    return render_template('blogs.html',blogs=blogs, verified_data = verified,  amount_complete = courses_complete)
     # blogs thats in italics is the one type on template 
 
 # This route will get one specific blog and any comments associated with that blog.  
@@ -38,13 +40,16 @@ def blogList():
 @login_required
 def blog(blogID):
     form = MarkasCompleteForm()
-    # admin_form = verifyCourseForm()
+    admin_form = verifyCourseForm()
     # retrieve the blog using the blogID (one only)
     thisBlog = Blog.objects.get(id=blogID)
     if form.validate_on_submit():
         currUser = User.objects.get(id=current_user.id)
         current_user.courses_completed.append(thisBlog)
         
+    if admin_form.validate_on_submit():
+        total_Data.verified_blogs.append(thisBlog)
+    
     # if admin_form.validate_on_submit():
     #     Blog.verified_blogs.append(thisBlog) 
     # If there are no comments the 'comments' object will have the value 'None'. Comments are 
@@ -54,7 +59,8 @@ def blog(blogID):
     # the blog object (thisBlog in this case) to get all the comments.
     theseComments = Comment.objects(blog=thisBlog)
     # Send the blog object and the comments object to the 'blog.html' template.
-    return render_template('blog.html',blog=thisBlog,comments=theseComments,form=form)
+    verified = total_Data.verified_blogs
+    return render_template('blog.html',blog=thisBlog,comments=theseComments,form=form, adminForm=admin_form, verified_list = verified)
     #  whta the stuff after tghe hytml file, sending variables to form.
 
 
@@ -73,6 +79,7 @@ def blogDelete(blogID):
     if current_user == deleteBlog.author:
         if deleteBlog in current_user.courses_completed:
             current_user.courses_completed.remove(deleteBlog)
+            total_Data.verified_blogs.remove(deleteBlog)
         # Blog.verified_blogs.remove(thisBlog) 
         # delete the blog using the delete() method from Mongoengine
         deleteBlog.delete()
@@ -84,6 +91,7 @@ def blogDelete(blogID):
     # Retrieve all of the remaining blogs so that they can be listed.
     blogs = Blog.objects()  
     # Send the user to the list of remaining blogs.
+
     return render_template('blogs.html',blogs=blogs)
 
 # This route actually does two things depending on the state of the if statement 

@@ -20,6 +20,11 @@ import jwt
 from time import time
 from bson.objectid import ObjectId
 
+class total_Data(Document):
+    verified_blogs=[]
+    # will use the below for courses, i will trial and error as I go.
+    verified_courses=[]
+
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
     gid = StringField(sparse=True, unique=True)
@@ -33,6 +38,8 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     age = IntField()
+    courses_marked=[]
+    # will use the above lsit for modules
     courses_completed=[]
     meta = {
         'ordering': ['lname','fname']
@@ -47,7 +54,6 @@ class Blog(Document):
     tag2 = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
-    verified_blogs=[]
     meta = {
         'ordering': ['-createdate']
     }
@@ -55,19 +61,21 @@ class Blog(Document):
 # class modules(Document):
     
 
-class Modules(Document):
+class Module(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
     user_display = StringField()
+    cover_image=FileField()
     title = StringField()
-    intro = StringField()
     content1 = StringField()
     image1 = FileField()
+    video1 = StringField()
     content2 = StringField()
     image2 = FileField()
+    video2 = StringField()
     content3= StringField()
     image3 = FileField()
     content4 = StringField()
-    recap_info = StringField()
+    video3 = StringField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     meta = {

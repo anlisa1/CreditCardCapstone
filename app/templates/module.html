@@ -1,5 +1,117 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div style="padding:10%; padding-top:0%;">
+    <h5 style="font-weight:bolder; text-align:center;">{{module.title}}</h5>
+    {% if module.content1 %}
+        <div>
+            <p>{{module.content1|safe}}</p>
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.image1 %}
+        <div style="display:flex; justify-content:center;">
+            <img src="{{module.image1}}">
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.video1 %}
+        <div style="display:flex; justify-content:center; margin:5%;">
+        <iframe  width="740" height="440"
+            src="{{module.video1}}?control=1">
+        </iframe>
+    </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.content2 %}
+        <div>
+            <p>{{module.content2|safe}}</p>
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.image2 %}
+        <div style="display:flex; justify-content:center;">
+            <img src="{{module.image2}}">
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.video2 %}
+        <div style="display:flex; justify-content:center; margin:5%;">
+        <iframe  width="740" height="440"
+            src="{{module.video2}}?control=1">
+        </iframe>
+    </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.content3 %}
+        <div>
+            <p>{{module.content3|safe}}</p>
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.image3 %}
+        <div style="display:flex; justify-content:center;">
+            <img src="{{module.image3}}">
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.content4 %}
+        <div>
+            <p>{{module.content4|safe}}</p>
+        </div>
+    {% else %}
+        
+    {% endif %}
+    {% if module.video3 %}
+        <div style="display:flex; justify-content:center; margin:5%;">
+        <iframe  width="740" height="440"
+            src="{{module.video3}}?control=1">
+        </iframe>
+    </div>
+    {% else %}
+        
+    {% endif %}
+</div>
+    {% if blog not in verified_list %}
+        {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+            <form method=post>
+                {{adminForm.hidden_tag()}}
+                <button id ='need_confetti' style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                </button>
+            </form>
+        {% endif %}
+        {% if (current_user.email == "s_amy.tran@ousd.org") %}
+            <form method=post>
+                {{adminForm.hidden_tag()}}
+                <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                </button>
+            </form>
+        {% endif %}
+    {% else %}
+    
+    {% endif %}
+    {% if blog in verified_list %}
+        {% if blog in current_user.courses_completed %}
+            <form method=post>
+                {{form.hidden_tag()}}
+                <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                    {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
+                </button>
+            </form>
+        {% else %}
 
+        {% endif %}
+    {% endif %}
+    
+</div>
 {% endblock %}

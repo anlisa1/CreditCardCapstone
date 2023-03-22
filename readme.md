@@ -44,3 +44,5 @@ Anlisa - code to maybe reuse and take off of testibg file
                 </button>
             </form>
         {% endif %} 
+
+new idea --> delete all user object item in list forst for loopp after user get objects then for each check if item in, if yes, take out, if no then leave alone
