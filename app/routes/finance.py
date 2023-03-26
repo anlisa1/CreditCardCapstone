@@ -11,9 +11,6 @@ from flask_login import login_required
 import datetime as dt
 
 
-@app.route("/modulo<int:id>")
-def modulo(id):
-  return render_template(f"./modules/modulo{id}.html")
 
 
 
