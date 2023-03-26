@@ -10,7 +10,7 @@
                 <!-- even if comment out, jinja always looks at code in brackets -->
 
             <h5  style="font-weight:bolder; text-align:center;">
-                {{form.title(size='100%', placeholder='{{form.title.label}}', style="text-align:center; color:black; padding:0.5%;")}}
+                {{form.title(size='100%', style="text-align:center; color:black; padding:0.5%;", placeholder='Title Here' ) }}
                 <!--List the errors for this field-->
                 {% for error in form.title.errors %}
                     <span style="color: red;">[{{ error }}]</span>
@@ -29,26 +29,31 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <br>
+
             <p>
-                {{form.content1(placeholder='{{form.content1.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {{form.content1(placeholder='', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.content1.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
             <p>
                 {{ form.image1.label }}<br>
-                {% if current_user.image1 %}
-                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image1.read())}}"> <br>
+                {% if image1 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(image1.read())}}"> <br>
                 {% else %}
-                    <img class="img-thumbnail" width = "100" src="">
+                    <img class="img-thumbnail" width = "100" src="/static/no_image.png">
                 {% endif %} <br>
                 {{ form.image1() }}<br>
                 {% for error in form.image1.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <br>
             <p>
-                {{form.video1(placeholder='{{form.video1.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {{form.video1.label}}<br>
+                format is https://www.youtube.com/embed/tgbNymZ7vqY if original link is https://www.youtube.com/tgbNymZ7vqY
+                {{form.video1(placeholder='video link here', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.video1.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -61,10 +66,10 @@
             </p>
             <p>
                 {{ form.image2.label }}<br>
-                {% if current_user.image2 %}
-                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image2.read())}}"> <br>
+                {% if image2 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(image2.read())}}"> <br>
                 {% else %}
-                    <img class="img-thumbnail" width = "100" src="">
+                    <img class="img-thumbnail" width = "100" src="/static/no_image.png">
                 {% endif %} <br>
                 {{ form.image2() }}<br>
                 {% for error in form.image2.errors %}
@@ -72,7 +77,9 @@
                 {% endfor %}
             </p>
             <p>
-                {{form.video2(placeholder='{{form.video2.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {{form.video1.label}}<br>
+                format is https://www.youtube.com/embed/tgbNymZ7vqY if original link is https://www.youtube.com/tgbNymZ7vqY
+                {{form.video2(placeholder='video link here', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.video2.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -85,24 +92,28 @@
             </p>
             <p>
                 {{ form.image3.label }}<br>
-                {% if current_user.image3 %}
-                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image3.read())}}"> <br>
+                {% if image3 %}
+                    <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(image3.read())}}"> <br>
                 {% else %}
-                    <img class="img-thumbnail" width = "100" src="">
+                    <img class="img-thumbnail" width = "100" src="/static/no_image.png">
                 {% endif %} <br>
                 {{ form.image3() }}<br>
                 {% for error in form.image3.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <br>
             <p>
                 {{form.content4(placeholder='{{form.content4.label}}', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.content4.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <br>
             <p>
-                {{form.video3(placeholder='{{form.video3.label}}', style='width:92%;  color:black; padding:0.5%;')}}
+                {{form.video1.label}}<br>
+                format is https://www.youtube.com/embed/tgbNymZ7vqY if original link is https://www.youtube.com/tgbNymZ7vqY
+                {{form.video3(placeholder='video link here', style='width:92%;  color:black; padding:0.5%;')}}
                 {% for error in form.video3.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}

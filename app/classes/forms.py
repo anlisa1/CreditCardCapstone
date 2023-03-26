@@ -33,9 +33,9 @@ class BlogForm(FlaskForm):
 
 class ModulesForm(FlaskForm):
     title =  StringField('Title Here', validators = [DataRequired()])
-    cover_image = FileField('Cover image here!!, will not be in the module but rather will appear in the modules page')
+    cover_image = FileField('Cover image here, will not be in the module but rather will appear in the modules page')
     content1 = CKEditorField('Leave empty if you have styling preferences')
-    image1 = FileField('optional image, no image will be shown if empty, format is https://www.youtube.com/embed/tgbNymZ7vqY if orginginal link is https://www.youtube.com/tgbNymZ7vqY')
+    image1 = FileField('optional image, no image will be shown if empty')
     video1 = StringField('please input link to youtube video here, leave empty if none')
     content2 = CKEditorField('for formatting')
     image2 = FileField('optional image')
