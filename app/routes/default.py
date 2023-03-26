@@ -25,6 +25,10 @@ def courses():
 @app.route('/old_modules')
 def old_modules_page():
     return render_template('Modules_backup.html')
+
+@app.route("/modulo<int:id>")
+def modulo(id):
+  return render_template(f"./modules/modulo{id}.html")
 # Here below will be all the original courses link
 
 # @app.route("/module<int:id>")
