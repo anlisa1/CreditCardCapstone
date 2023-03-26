@@ -12,7 +12,7 @@
             <h5  style="font-weight:bolder; text-align:center;">
                 {{form.title(size='100%', placeholder='{{form.title.label}}', style="text-align:center; color:black; padding:0.5%;")}}
                 <!--List the errors for this field-->
-                {% for error in form.subject.errors %}
+                {% for error in form.title.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </h5>

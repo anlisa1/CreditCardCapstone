@@ -32,7 +32,6 @@ class BlogForm(FlaskForm):
     submit = SubmitField('Blog')
 
 class ModulesForm(FlaskForm):
-    # author = StringField()
     title =  StringField('Title Here', validators = [DataRequired()])
     cover_image = FileField('Cover image here!!, will not be in the module but rather will appear in the modules page')
     content1 = CKEditorField('Leave empty if you have styling preferences')

@@ -32,16 +32,13 @@ def moduleList():
     return render_template('modules.html',modules=all_modules, verified_data = verified,  amount_complete = courses_complete)
     # italics, type on template
 
-
+@app.route('/module/list')
 @app.route('/verify')
 def verifyList():
-  all_modules = Module.objects()
-    
+  all_modules = Module.objects()    
   verified = total_Data.verified_courses
-  courses_complete = current_user.courses.marked
 
-
-  return render_template('verify_modules.html',modules=all_modules, verified_data = verified,  amount_complete = courses_complete)
+  return render_template('verify_modules.html',modules=all_modules, verified_data = verified)
 # if you have a form, you need a method, security issue
 @app.route('/module/<moduleID>', methods=['GET', 'POST'])
 # This route will only run if the user is logged in
@@ -63,7 +60,6 @@ def module(moduleID):
 
 @app.route('/module/new', methods=['GET', 'POST'])
 
-
 @login_required
 def moduleNew():
   form = ModulesForm()
@@ -84,27 +80,27 @@ def moduleNew():
     if form.cover_image.data:
         if newModule.cover_image:
           newModule.cover_image.delete()
-        newModule.cover_image.put(form.cover_image.data, content_type = 'image/jpeg')
+        newModule.cover_image.put(form.cover_image.data, content_type = 'cover_image/jpeg')
           
         newModule.save()
 
     if form.image1.data:
       if form.image1:
         form.image1.delete()
-      form.image1.put(form.image1.data, content_type = 'image/jpeg')
+      form.image1.put(form.image1.data, content_type = 'image1/jpeg')
       form.save()
 
     if form.image2.data:
       if newModule.image2:
         newModule.image2.delete()
-      newModule.image2.put(form.image2.data, content_type = 'image/jpeg')
+      newModule.image2.put(form.image2.data, content_type = 'image2/jpeg')
         # This saves all the updates
       newModule.save()
     
     if form.image3.data:
       if newModule.image3:
         newModule.image3.delete()
-      newModule.image4.put(form.image4.data, content_type = 'image/jpeg')
+      newModule.image4.put(form.image4.data, content_type = 'image3/jpeg')
         # This saves all the updates
       newModule.save()
     newModule.save()
