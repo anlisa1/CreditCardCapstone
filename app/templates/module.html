@@ -80,7 +80,7 @@
         
     {% endif %}
 </div>
-    {% if blog not in verified_list %}
+    {% if module.verified == False %}
         {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
             <div style="display:flex; justify-content:space-between;">
                 <form method=post>
@@ -117,11 +117,11 @@
     {% else %}
     
     {% endif %}
-    {% if blog in verified_list %}
+    {% if module.verified %}
         {% if current_user.is_anonymous %}
 
         {% else %}
-            {% if blog in current_user.courses_marked %}
+            {% if module in current_user.courses_marked %}
                 <form method=post>
                     {{form.hidden_tag()}}
                     <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
