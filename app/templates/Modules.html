@@ -7,17 +7,17 @@
     {% for course in verified_modules %}
         {% if loop.index <= amount_complete|length %}
             <div class="p-3 mx-0 b-0 bg-green">
-
+                
             </div>
         {% else %}
             <div class="p-3 mx-0 b-0 bg-gray">
-
+                
             </div>
         {% endif %}
     {% endfor %}
 {% endif %}
 </div>
-<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules {{verified_modules|length}}</strong></h4>
+<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules {{verified_modules|length}} all({{modules|length}})</strong></h4>
 {% if verified_modules %}
     <div class="row g-3 border-bottom">
         {% for module in verified_modules %}

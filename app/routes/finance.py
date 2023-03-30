@@ -19,20 +19,21 @@ import datetime as dt
 # This means the user must be logged in to see this page
 def moduleList():
     verified_modules = Module.objects(verified=True)
-    courses_complete = current_user.courses_marked
+    # courses_complete = current_user.courses_marked
 
     # if current_user.is_authenticated:
       # this fnction checks for if user is logged in without forcing them to login in!!
-      
-    return render_template('modules.html',verified_modules=verified_modules, amount_complete = courses_complete)
+    modules =  Module.objects()
+    return render_template('modules.html',verified_modules=verified_modules, modules=modules)
     # italics, type on template
 
 @app.route('/module/list')
 @app.route('/verify')
 def verifyList():
   if current_user.email=='s_anlisa.liu@ousd.org' or  current_user.email=='s_amy.tran@ousd.org':
-    all_unverified_modules = Module.objects(verified=False)    
-    return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
+    all_unverified_modules = Module.objects(verified=False)  
+    modules =  Module.objects()  
+    return render_template('verify_modules.html', unverified_modules = all_unverified_modules, modules=modules)
   else:
     return redirect(url_for('index'))
 # if you have a form, you need a method, security issue
@@ -54,7 +55,7 @@ def module(moduleID):
 
     if admin_form.validate_on_submit():
       thisModule.update(
-        verified = True
+        verified = True,
       )
       
     return render_template('module.html',module=thisModule,form=form, adminForm=admin_form)
@@ -84,8 +85,8 @@ def moduleNew():
         newModule.save()
 
     if form.image1.data:
-      form.image1.put(form.image1.data, content_type='image/jpeg')
-      form.save()
+      newModule.image1.put(form.image1.data, content_type='image/jpeg')
+      newModule.save()
 
     if form.image2.data:
       newModule.image2.put(form.image2.data, content_type = 'image/jpeg')

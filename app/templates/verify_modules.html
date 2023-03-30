@@ -4,19 +4,24 @@
 {% block body %}
 
 {% if unverified_modules %}
-    <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List ({{unverified_modules|length}})</strong></h4><br>
-    <div style="display:flex; justify-content:center; overflow:visible;">
+    <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List ({{unverified_modules|length}}) all{{modules|length}}</strong></h4><br>
+    <div class='row row-cols-3' style="display:flex; justify-content:center;">
         {% for module in unverified_modules %}
-            <a href="/module/{{module.id}}" class='m-3'style="text-decoration:none; background-color:#54B6B4; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                {% if module.cover_image %}
-                    <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(module.cover_image.read())}}"> <br>
-                {% else %}
-                    <img class="img-thumbnail" width = "75%" src="/static/no_image.png">
-                {% endif %}
-                <br>
-                <strong> {{module.title}} </strong>
-                <br><br>
-            </a>
+            <div class='col card m-2' style="width:25%; background-color:#2a7877; border-radius:5%;">
+                <a  href="/module/{{module.id}}" style='font-size:150%' class='text-light p-3 text-decoration-none'>
+                    <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                    {% if module.cover_image %}
+                        <img  width = "85%" style="margin-left:9%; margin-top:2%" src="data:image;base64,{{base64encode(module.cover_image.read())}}">
+                    {% else %}
+                        <img  class='card-img'  style="margin-top:2%" width = "75%" src="/static/no_image.png">
+                    {% endif %}
+                    <br>
+                    <div class="card-body">
+                        <strong class="card-title"> {{module.title}} </strong>
+                    </div>
+                    <br>
+                </a>
+            </div>
         {% endfor %}
     </div>
 {% else %}

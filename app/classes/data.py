@@ -71,7 +71,7 @@ class Module(Document):
     image3 = FileField()
     content4 = StringField()
     video3 = StringField()
-    verified=BooleanField(default=False)
+    verified = BooleanField(default=False)
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     meta = {

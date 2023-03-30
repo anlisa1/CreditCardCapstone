@@ -2,7 +2,7 @@
 
 {% block body %}
 <div style="padding:10%; padding-top:0%;">
-    <h5 style="font-weight:bolder; text-align:center;">{{module.title}}</h5>
+    <h5 style="font-weight:bolder; text-align:center; margin-bottom:5%;">{{module.title}}</h5>
     {% if module.content1 %}
         <div>
             <p>{{module.content1|safe}}</p>
@@ -11,8 +11,8 @@
         
     {% endif %}
     {% if module.image1 %}
-        <div style="display:flex; justify-content:center;">
-            <img  width='75%' src="data:image;base64,{{base64encode(module.image1.read())}}">
+        <div style="display:flex; justify-content:center; margin:5%;">
+            <img  width='65%' src="data:image;base64,{{base64encode(module.image1.read())}}">
         </div>
     {% else %}
         
@@ -34,7 +34,7 @@
         
     {% endif %}
     {% if module.image2 %}
-        <div style="display:flex; justify-content:center;">
+        <div style="display:flex; justify-content:center; margin:5%;">
             <img  width='75%' src="data:image;base64,{{base64encode(module.image2.read())}}">
         </div>
     {% else %}
@@ -57,7 +57,7 @@
         
     {% endif %}
     {% if module.image3 %}
-        <div style="display:flex; justify-content:center;">
+        <div style="display:flex; justify-content:center; margin:5%;">
             <img width='75%' src="data:image;base64,{{base64encode(module.image3.read())}}">
         </div>
     {% else %}
