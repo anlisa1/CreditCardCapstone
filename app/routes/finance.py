@@ -30,10 +30,9 @@ def moduleList():
 @app.route('/module/list')
 @app.route('/verify')
 def verifyList():
-  if  current_user.is_authenticated:
-    if current_user.email=='s_anlisa.liu@ousd.org' or  current_user.email=='s_amy.tran@ousd.org':
-      all_unverified_modules = Module.objects(verified=False)    
-      return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
+  if current_user.email=='s_anlisa.liu@ousd.org' or  current_user.email=='s_amy.tran@ousd.org':
+    all_unverified_modules = Module.objects(verified=False)    
+    return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
   else:
     return redirect(url_for('index'))
 # if you have a form, you need a method, security issue
@@ -57,6 +56,7 @@ def module(moduleID):
       thisModule.update(
          verified = True
       )
+      
     return render_template('module.html',module=thisModule,form=form, adminForm=admin_form)
     #  whta the stuff after tghe hytml file, sending variables to form.
 
