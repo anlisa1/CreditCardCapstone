@@ -54,7 +54,7 @@ def module(moduleID):
 
     if admin_form.validate_on_submit():
       thisModule.update(
-         verified = True
+        verified = True
       )
       
     return render_template('module.html',module=thisModule,form=form, adminForm=admin_form)
