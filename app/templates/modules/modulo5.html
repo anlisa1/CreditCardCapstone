@@ -7,8 +7,8 @@
     
     <div id="survey">
         <div style="margin-bottom:1%;">
-            <h4 style="padding-bottom:0.5%;"> Have you ever had a credit card?</h4>
-            <div>
+            <h6 style="padding-bottom:0.5%;"> Have you ever had a credit card?</h6>
+            <div style="margin-left:1%;">
                 <div>
                     <input type ='radio' name ='card' value="card yes" id="card_yes">
                     <label for = "card_yes"> Yes</label>
@@ -20,8 +20,8 @@
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h4>Are you a student?</h4>
-            <div>
+            <h6>Are you a student?</h6>
+            <div style="margin-left:1%;">
                 <div>
                     <input type ='radio' name ='student' value="student yes" id="student_yes">
                     <label for = "student_yes"> Yes</label>
@@ -33,8 +33,8 @@
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h4>Do you have a business</h4>
-            <div>
+            <h6>Do you have a business</h6>
+            <div style="margin-left:1%;">
                 <div>
                     <input type ='radio' name ='business' value="business yes" id="business_yes">
                     <label for = "business_yes"> Yes</label>
@@ -46,8 +46,8 @@
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h4>Do you frequently travel overseas?</h4>
-            <div>
+            <h6>Do you frequently travel overseas?</h6>
+            <div style="margin-left:1%;">
                 <div>
                     <input type ='radio' name ='travel' value="travel yes" id="travel_yes">
                     <label for = "travel_yes"> Yes</label>
@@ -63,8 +63,8 @@
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h4>Do you dine out often?</h4>
-            <div>
+            <h6>Do you dine out often?</h6>
+            <div style="margin-left:1%;">
                 <div>
                     <input type ='radio' name ='food' value="eat out yes" id="dine_yes">
                     <label for = "dine_yes"> Yes</label>
@@ -80,21 +80,23 @@
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h4>Is getting a high cashback reward important to you</h4>
-            <div>
-                <input type ='radio' name ='cashback' value="cashback yes" id="cashback_yes">
-                <label for = "cashback_yes"> Yes</label>
-            </div>
-            <div>
-                <input type ='radio' name ='cashback' value="cashback maybe" id="cashback_maybe">
-                <label for = "cashback_maybe"> Maybe </label>
-            </div>
-            <div>
-                <input type ='radio' name ='cashback' value="cashback no" id="cashback_no">
-                <label for = "cashback_no"> No</label>
+            <h6>Is getting a high cashback reward important to you</h6>
+            <div style="margin-left:1%;">
+                <div>
+                    <input type ='radio' name ='cashback' value="cashback yes" id="cashback_yes">
+                    <label for = "cashback_yes"> Yes</label>
+                </div>
+                <div>
+                    <input type ='radio' name ='cashback' value="cashback maybe" id="cashback_maybe">
+                    <label for = "cashback_maybe"> Maybe </label>
+                </div>
+                <div>
+                    <input type ='radio' name ='cashback' value="cashback no" id="cashback_no">
+                    <label for = "cashback_no"> No</label>
+                </div>
             </div>
         </div>
-        <button id='submit' >Submit</button>
+        <button id='submit' class='text-light' style="margin-top:3%; padding-top:1.5%; padding-left:3%; padding-bottom:1.5%; padding-right:3%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">Submit</button>
     </div>
     <div class="answers">
         <div id="for_student">
@@ -146,7 +148,7 @@
             }
             if($('input[name="travel"]:checked').val() =="travel yes"){
                 $("#for_travel").show();
-                if($('input[name="student"]:checked').val() =="student no"){
+                if($('input[name="card"]:checked').val() =="card yes"){
                     $("#for_").show();
                 }
             }

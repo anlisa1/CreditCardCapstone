@@ -2,100 +2,35 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div style="display:flex; justify-content:center; padding:1%; border-radius:25%;">
-    {% for course in verified_data %}
-        {% for amount in current_user.courses_marked %}
-            <div style="width:2%; height:2%; background-color:green; margin-right:0%; margin-left:0%;">
-                
+<div class='p-1 mt-1' style="display:flex; justify-content:center; border-radius:25%;">
+{% if verified_modules %}
+    {% for course in verified_modules %}
+        {% if loop.index <= amount_complete|length %}
+            <div class="p-3 mx-0 b-0 bg-green">
+
             </div>
-        {% endfor %}
-        {% if loop.index > current_user.courses_marked.length %}
-            <div style="width:2%; height:2%; background-color:gray; margin-right:0%; margin-left:0%;">
-                    
+        {% else %}
+            <div class="p-3 mx-0 b-0 bg-gray">
+
             </div>
         {% endif %}
     {% endfor %}
+{% endif %}
 </div>
-<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules</strong></h4>
-{% if verified_data %}
-    {% for course in verified_data %}
-        <div class="row border-bottom">
-            <div class="col-2">
-                {% if (loop.index%3) == 1 %}
-                    <div>
-                        <a href='/Module/{{module.id}}' class='m-3' style="text-decoration:none; background-color:#2a7877; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                            <img src="./static/no_image.png" style="width:100%;  margin-bottom:9%;">
-                            <br>
-                            <strong style="font-size:150%;">{{course.title}}</strong>
-                            {% if course in current_user.courses_marked %}
-                                <div>
-                                    <img src="./static/Complete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Complete</small>
-                                </div>  
-                            {% else %}  
-                                <div>
-                                    <img src="./static/incomplete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Incomplete</small>
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
-                {% endif %}
-                {% if loop.index == verified_data.length %}
-                    {% if (loop.index%3) == 0%}
-                        <a href="/module/new" class='m-3'style="text-decoration:none; width:25%; background-color:##175C5B;  border-radius:5%;  padding:1.5%;">
-        
-                            <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
-                            <br>
-                            <strong class="text-light" style="font-size:150%;">Add your course</strong>
-                            <br>
-                            <br>
-                        </a>
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="col-2">
-                {% if (loop.index%3) == 2 %}
-                    <div>
-                        <a href='/Module/{{module.id}}' class='m-3' style="text-decoration:none; background-color:#2a7877; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                            <img src="./static/no_image.png" style="width:100%;  margin-bottom:9%;">
-                            <br>
-                            <strong style="font-size:150%;">{{course.title}}</strong>
-                            {% if course in current_user.courses_marked %}
-                                <div>
-                                    <img src="./static/Complete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Complete</small>
-                                </div>  
-                            {% else %}  
-                                <div>
-                                    <img src="./static/incomplete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Incomplete</small>
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
-                {% endif %}
-                {% if loop.index == verified_data.length %}
-                    {% if (loop.index%3) == 1%}
-                        <a href="/module/new" class='m-3'style=" text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">
-        
-                            <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
-                            <br>
-                            <strong class="text-light" style="font-size:150%;">Add your course</strong>
-                            <br>
-                            <br>
-                        </a>
-                    {% endif %}
-                {% endif %}
-            </div>
+<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules {{verified_modules|length}}</strong></h4>
+{% if verified_modules %}
+    <div class="row g-3 border-bottom">
+        {% for module in verified_modules %}
             <div class="col">
-                {% if (loop.index%3) == 0 %}
-                    <div>
-                        <a href='/Module/{{module.id}}' class='m-3' style="text-decoration:none; background-color:#2a7877; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                            <img src="./static/no_image.png" style="width:100%;  margin-bottom:9%;">
-                            <br>
-                            <strong style="font-size:150%;">{{course.title}}</strong>
-                            {% if course in current_user.courses_marked %}
+                <div>
+                    <a href='/module/{{module.id}}' class='m-3' style="text-decoration:none; background-color:#2a7877; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
+                        <img src="./static/no_image.png" style="width:100%;  margin-bottom:9%;">
+                        <br>
+                        <strong style="font-size:150%;">{{module.title}}</strong>
+                        {% if current_user.is_anonymous  %}
+                            <br><br>
+                        {% else %}
+                            {% if module in current_user.courses_marked %}
                                 <div>
                                     <img src="./static/Complete.png" style="width:7%;">
                                     <small style="font-size:110%;">Complete</small>
@@ -106,24 +41,23 @@
                                     <small style="font-size:110%;">Incomplete</small>
                                 </div>
                             {% endif %}
-                        </a>
-                    </div>
-                {% endif %}
-                {% if loop.index == verified_data.length %}
-                    {% if (loop.index%3) == 1%}
-                        <a href="/module/new" class='m-3'style="text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">
-        
-                            <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
-                            <br>
-                            <strong class="text-light" style="font-size:150%;">Add your course</strong>
-                            <br>
-                            <br>
-                        </a>
-                    {% endif %}
-                {% endif %}
+                        {% endif %}
+                    </a>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+            <div class='col' style='display:flex; justify-content:center;'>
+                <a href="/module/new" class='m-3 text-light'style="text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">
+                    <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white;">
+                        <br>
+                        <strong style="font-size:150%;">Add your course</strong><br><br>
+                </a>
+                <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
+                </div>
+                <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% else %}
     <div style='display:flex; justify-content:center;'>
         <a href="/module/new" class='m-3 text-light'style="text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">

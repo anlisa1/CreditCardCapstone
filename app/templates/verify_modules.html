@@ -3,28 +3,20 @@
 
 {% block body %}
 
-{% if modules %}
-    {% if verified_data %}
-        <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List ({{modules.length-verified_data.length}})</strong></h4><br>
-    {% else %}
-    <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List ({{modules.length}})</strong></h4><br>
-    {% endif %}
+{% if unverified_modules %}
+    <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List ({{unverified_modules|length}})</strong></h4><br>
     <div style="display:flex; justify-content:center; overflow:visible;">
-        {% for module in modules %}
-            {% if module in verified_data %}
-                <!-- will leave empty if already verified -->
-            {% else %}
-                <a href="/Module/{{module.id}}" class='m-3'style="text-decoration:none; background-color:#54B6B4; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                    {% if module.cover_image %}
-                        <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(module.cover_image.read())}}"> <br>
-                    {% else %}
-                        <img class="img-thumbnail" width = "100" src="/static/no_image.png">
-                    {% endif %}
-                    <br>
-                    <strong> {{module.title}} </strong>
-                    <br><br>
-                </a>
-            {% endif %}
+        {% for module in unverified_modules %}
+            <a href="/module/{{module.id}}" class='m-3'style="text-decoration:none; background-color:#54B6B4; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
+                {% if module.cover_image %}
+                    <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(module.cover_image.read())}}"> <br>
+                {% else %}
+                    <img class="img-thumbnail" width = "75%" src="/static/no_image.png">
+                {% endif %}
+                <br>
+                <strong> {{module.title}} </strong>
+                <br><br>
+            </a>
         {% endfor %}
     </div>
 {% else %}

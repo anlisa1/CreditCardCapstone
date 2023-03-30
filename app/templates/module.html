@@ -12,7 +12,7 @@
     {% endif %}
     {% if module.image1 %}
         <div style="display:flex; justify-content:center;">
-            <img src="{{module.image1}}">
+            <img  width='75%' src="data:image;base64,{{base64encode(module.image1.read())}}">
         </div>
     {% else %}
         
@@ -35,7 +35,7 @@
     {% endif %}
     {% if module.image2 %}
         <div style="display:flex; justify-content:center;">
-            <img src="{{module.image2}}">
+            <img  width='75%' src="data:image;base64,{{base64encode(module.image2.read())}}">
         </div>
     {% else %}
         
@@ -58,7 +58,7 @@
     {% endif %}
     {% if module.image3 %}
         <div style="display:flex; justify-content:center;">
-            <img src="{{module.image3}}">
+            <img width='75%' src="data:image;base64,{{base64encode(module.image3.read())}}">
         </div>
     {% else %}
         
@@ -82,35 +82,55 @@
 </div>
     {% if blog not in verified_list %}
         {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
-            <form method=post>
-                {{adminForm.hidden_tag()}}
-                <button id ='need_confetti' style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
+            <div style="display:flex; justify-content:space-between;">
+                <form method=post>
+                    {{adminForm.hidden_tag()}}
+                    <button class='btn' style=" border:none; background-color:#2a7877; text-decoration:none;">
+                        {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                    </button>
+                </form>
+                <a  style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/delete.png">
+                </a>
+                <a style='float:right; background-color:#2a7877;' data-toggle="tooltip" data-placement="top" title="Edit Module" href="/module/edit/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/edit.png">
+                </a>
+            </div>
         {% endif %}
         {% if (current_user.email == "s_amy.tran@ousd.org") %}
-            <form method=post>
-                {{adminForm.hidden_tag()}}
-                <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
+            <div class="col">
+                <form method=post>
+                    {{adminForm.hidden_tag()}}
+                    <button class='btn' style=" border:none; background-color:#2a7877; text-decoration:none;">
+                        {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                    </button>
+                </form>
+                <a style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/delete.png">
+                </a>
+                <a style='float:right; background-color:#2a7877;' data-toggle="tooltip" data-placement="top" title="Edit Module" href="/module/edit/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/edit.png">
+                </a>
+            </div>
+            </div>
         {% endif %}
     {% else %}
     
     {% endif %}
     {% if blog in verified_list %}
-        {% if blog in current_user.courses_completed %}
-            <form method=post>
-                {{form.hidden_tag()}}
-                <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
-        {% else %}
+        {% if current_user.is_anonymous %}
 
-        {% endif %}
+        {% else %}
+            {% if blog in current_user.courses_marked %}
+                <form method=post>
+                    {{form.hidden_tag()}}
+                    <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+                        {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
+                    </button>
+                </form>
+            {% else %}
+                <h3>Completed</h3>
+            {% endif %}
     {% endif %}
     
 </div>

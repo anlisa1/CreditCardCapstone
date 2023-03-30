@@ -5,7 +5,7 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import User, total_Data, Module
+from app.classes.data import User, Module
 from app.classes.forms import MarkasCompleteForm, verifyCourseForm, ModulesForm
 from flask_login import login_required
 import datetime as dt
@@ -18,24 +18,24 @@ import datetime as dt
 @app.route('/modules')
 # This means the user must be logged in to see this page
 def moduleList():
-    all_modules = Module.objects()
-    
-    verified = total_Data.verified_courses
-    courses_complete = current_user.courses.marked
+    verified_modules = Module.objects(verified=True)
+    courses_complete = current_user.courses_marked
 
     # if current_user.is_authenticated:
       # this fnction checks for if user is logged in without forcing them to login in!!
       
-    return render_template('modules.html',modules=all_modules, verified_data = verified,  amount_complete = courses_complete)
+    return render_template('modules.html',verified_modules=verified_modules, amount_complete = courses_complete)
     # italics, type on template
 
 @app.route('/module/list')
 @app.route('/verify')
 def verifyList():
-  all_modules = Module.objects()    
-  verified = total_Data.verified_courses
-
-  return render_template('verify_modules.html',modules=all_modules, verified_data = verified)
+  if  current_user.is_authenticated:
+    if current_user.email=='s_anlisa.liu@ousd.org' or  current_user.email=='s_amy.tran@ousd.org':
+      all_unverified_modules = Module.objects(verified=False)    
+      return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
+  else:
+    return redirect(url_for('index'))
 # if you have a form, you need a method, security issue
 @app.route('/module/<moduleID>', methods=['GET', 'POST'])
 # This route will only run if the user is logged in
@@ -43,16 +43,21 @@ def verifyList():
 def module(moduleID):
     form = MarkasCompleteForm()
     admin_form = verifyCourseForm()
+    currUser = User.objects.get(id=current_user.id)
     
     thisModule = Module.objects.get(id=moduleID)
     if form.validate_on_submit():
-        current_user.courses_completed.append(thisModule)
-        
+      currUser.courses_marked.append(thisModule)
+      # currUser.update(
+      #    courses_marked.append(thisModule)
+      # )
+      currUser.save()
+
     if admin_form.validate_on_submit():
-        total_Data.verified_courses.append(thisModule)
-    
-    verified = total_Data.verified_courses
-    return render_template('module.html',module=thisModule,form=form, adminForm=admin_form, verifiedCourses = verified)
+      thisModule.update(
+         verified = True
+      )
+    return render_template('module.html',module=thisModule,form=form, adminForm=admin_form)
     #  whta the stuff after tghe hytml file, sending variables to form.
 
 @app.route('/module/new', methods=['GET', 'POST'])
@@ -75,29 +80,20 @@ def moduleNew():
       # ask wright how to leave empty if there is photo
     )
     if form.cover_image.data:
-        if newModule.cover_image:
-          newModule.cover_image.delete()
-        newModule.cover_image.put(form.cover_image.data, content_type = 'cover_image/jpeg')
-          
+        newModule.cover_image.put(form.cover_image.data, content_type='image/jpeg')
         newModule.save()
 
     if form.image1.data:
-      if form.image1:
-        form.image1.delete()
-      form.image1.put(form.image1.data, content_type = 'image1/jpeg')
+      form.image1.put(form.image1.data, content_type='image/jpeg')
       form.save()
 
     if form.image2.data:
-      if newModule.image2:
-        newModule.image2.delete()
-      newModule.image2.put(form.image2.data, content_type = 'image2/jpeg')
+      newModule.image2.put(form.image2.data, content_type = 'image/jpeg')
         # This saves all the updates
       newModule.save()
     
     if form.image3.data:
-      if newModule.image3:
-        newModule.image3.delete()
-      newModule.image4.put(form.image4.data, content_type = 'image3/jpeg')
+      newModule.image3.put(form.image3.data, content_type = 'image/jpeg')
         # This saves all the updates
       newModule.save()
     newModule.save()
@@ -108,20 +104,21 @@ def moduleNew():
 # Only run this route if the user is logged in.
 @login_required
 def moduleDelete(moduleID):
-    deleteModule = Module.objects.get(id=moduleID)
+  deleteModule = Module.objects.get(id=moduleID)
+  all_users=User.objects()
+  if current_user.email == "s_anlisa.liu@ousd.org" or  current_user.email == "s_amy.tran@ousd.org":
+    for user in all_users:
+      if deleteModule == user.courses_marked:
+        user.courses_marked.remove(deleteModule)
+    deleteModule.delete()
+    flash('The Module was deleted.')
+    all_unverified_modules = Module.objects(verified=False)    
+    return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
+  else:
+      flash("Only Admins can delete, why are you here?")
+      return redirect(url_for('index'))
 
-    if current_user == deleteModule.author:
-        if deleteModule in current_user.courses_marked:
-            current_user.courses_marked.remove(deleteModule)
-            total_Data.verified_courses.remove(deleteModule)
-# dont forget method to delete all users with that course as marked done perhaps
-        deleteModule.delete()
-        flash('The Module was deleted.')
-    else:
-        flash("You can't delete a Module you don't own.")
-    modules = Module.objects()  
-
-    return render_template('modules.html',modules=modules)
+   
           
 
 

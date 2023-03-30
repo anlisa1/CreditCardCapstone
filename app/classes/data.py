@@ -13,17 +13,13 @@ from setuptools import SetuptoolsDeprecationWarning
 from app import app
 from flask import flash
 from flask_login import UserMixin
-from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, CASCADE
+from mongoengine import FileField, EmailField, StringField, IntField, ReferenceField, DateTimeField, BooleanField, ListField, CASCADE
 from flask_mongoengine import Document
 import datetime as dt
 import jwt
 from time import time
 from bson.objectid import ObjectId
 
-class total_Data(Document):
-    verified_blogs=[]
-    # will use the below for courses, i will trial and error as I go.
-    verified_courses=[]
 
 class User(UserMixin, Document):
     createdate = DateTimeField(defaultdefault=dt.datetime.utcnow)
@@ -38,9 +34,8 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     age = IntField()
-    courses_marked=[]
+    courses_marked=ListField()
     # will use the above lsit for modules
-    courses_completed=[]
     meta = {
         'ordering': ['lname','fname']
     }
@@ -76,6 +71,7 @@ class Module(Document):
     image3 = FileField()
     content4 = StringField()
     video3 = StringField()
+    verified=BooleanField(default=False)
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
     meta = {

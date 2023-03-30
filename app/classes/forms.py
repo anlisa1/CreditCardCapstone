@@ -44,7 +44,7 @@ class ModulesForm(FlaskForm):
     image3 = FileField('optional image')
     content4 = CKEditorField('for formatting')
     video3 = StringField('please input link to youtube video here, leave empty if none')
-    submit = SubmitField('Create Module')
+    submit = SubmitField('Make Module')
     # user_display = SelectField('Display Author', choices=[(),()], validators =[DataRequired()])
     
 
