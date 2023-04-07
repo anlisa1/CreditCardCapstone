@@ -32,17 +32,7 @@ Anlisa - code to maybe reuse and take off of testibg file
             current_user.courses_completed.remove(deleteBlog)
             I will comment all python after words but html cant be as jinja
 
-    in html
-        Mark as done button
-        {% if blog in current_user.courses_completed %}
-            
-        {% else %}
-            <form method=post>
-                {{form.hidden_tag()}}
-                <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
-        {% endif %} 
 
 new idea --> delete all user object item in list forst for loopp after user get objects then for each check if item in, if yes, take out, if no then leave alone
+
+stuff for me to do, suggestion: same page, different varaibles placed in jinja
