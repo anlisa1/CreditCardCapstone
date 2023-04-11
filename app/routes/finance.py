@@ -15,17 +15,17 @@ import datetime as dt
 
 
 @app.route('/module/list')
-@app.route('/modules')
+@app.route('/Modules')
 # This means the user must be logged in to see this page
 def moduleList():
-    verified_modules = Module.objects(verified=True)
-    # courses_complete = current_user.courses_marked
+  verified_modules = Module.objects(verified=True)
+  # courses_complete = current_user.courses_marked
 
-    # if current_user.is_authenticated:
-      # this fnction checks for if user is logged in without forcing them to login in!!
-    modules =  Module.objects()
-    return render_template('modules.html',verified_modules=verified_modules, modules=modules)
-    # italics, type on template
+  # if current_user.is_authenticated:
+    # this fnction checks for if user is logged in without forcing them to login in!!
+  modules =  Module.objects()
+  return render_template('modules.html',verified_modules=verified_modules, modules=modules)
+  # italics, type on template
 
 @app.route('/module/list')
 @app.route('/verify')

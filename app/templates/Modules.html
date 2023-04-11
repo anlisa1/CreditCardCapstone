@@ -7,69 +7,40 @@
     {% for course in verified_modules %}
         {% if loop.index <= amount_complete|length %}
             <div class="p-3 mx-0 b-0 bg-green">
-                
+                ds1
             </div>
         {% else %}
             <div class="p-3 mx-0 b-0 bg-gray">
-                
+               ds 
             </div>
         {% endif %}
     {% endfor %}
 {% endif %}
 </div>
 <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules {{verified_modules|length}} all({{modules|length}})</strong></h4>
+
 {% if verified_modules %}
-    <div class="row g-3 border-bottom">
+    <div class='row row-cols-3' style="display:flex; justify-content:center;">
         {% for module in verified_modules %}
-            <div class="col">
-                <div>
-                    <a href='/module/{{module.id}}' class='m-3' style="text-decoration:none; background-color:#2a7877; color:white; border-radius:5%; width:25%;  padding:1.5%; padding-bottom:3%;">
-                        <img src="./static/no_image.png" style="width:100%;  margin-bottom:9%;">
-                        <br>
-                        <strong style="font-size:150%;">{{module.title}}</strong>
-                        {% if current_user.is_anonymous  %}
-                            <br><br>
-                        {% else %}
-                            {% if module in current_user.courses_marked %}
-                                <div>
-                                    <img src="./static/Complete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Complete</small>
-                                </div>  
-                            {% else %}  
-                                <div>
-                                    <img src="./static/incomplete.png" style="width:7%;">
-                                    <small style="font-size:110%;">Incomplete</small>
-                                </div>
-                            {% endif %}
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-            <div class='col' style='display:flex; justify-content:center;'>
-                <a href="/module/new" class='m-3 text-light'style="text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">
-                    <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white;">
-                        <br>
-                        <strong style="font-size:150%;">Add your course</strong><br><br>
+            <div class='col card m-2' style="width:25%; background-color:#2a7877; border-radius:5%;">
+                <a  href="/module/{{module.id}}" style='font-size:150%' class='text-light p-3 text-decoration-none'>
+                    <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                    {% if module.cover_image %}
+                        <img  width = "85%" style="margin-left:9%; margin-top:2%" src="data:image;base64,{{base64encode(module.cover_image.read())}}">
+                    {% else %}
+                        <img  class='card-img'  style="margin-top:2%" width = "75%" src="/static/no_image.png">
+                    {% endif %}
+                    <br>
+                    <div class="card-body">
+                        <strong class="card-title"> {{module.title}} </strong>
+                    </div>
+                    <br>
                 </a>
-                <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
-                </div>
-                <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
-                </div>
             </div>
         {% endfor %}
     </div>
 {% else %}
-    <div style='display:flex; justify-content:center;'>
-        <a href="/module/new" class='m-3 text-light'style="text-decoration:none; width:25%; background-color:#175C5B;  border-radius:5%;  padding:1.5%;">
-            <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white;">
-                <br>
-                <strong style="font-size:150%;">Add your course</strong><br><br>
-        </a>
-        <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
-        </div>
-        <div class='m-3' style="width:25%;  padding:1.5%; padding-bottom:3%;">
-        </div>
-    </div>
+    <h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Verify Modules List (0) </strong></h4>
 {% endif %}
 
 <br><br>
