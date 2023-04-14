@@ -34,6 +34,9 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     age = IntField()
+    modules_completed=ListField()
+    
+    # courses marked gone
     courses_marked=ListField()
     # will use the above lsit for modules
     meta = {

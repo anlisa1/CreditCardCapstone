@@ -121,16 +121,37 @@
         {% if current_user.is_anonymous %}
 
         {% else %}
-            {% if module in current_user.courses_marked %}
+            {% if module in current_user.modules_completed %}
+                <h3>Completed</h3>
+            {% else %}
                 <form method=post>
                     {{form.hidden_tag()}}
                     <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
                         {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
                     </button>
                 </form>
-            {% else %}
-                <h3>Completed</h3>
             {% endif %}
+        {% endif %}
+        {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+            <div style="display:flex; justify-content:space-between;">
+                <a  style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/delete.png">
+                </a>
+                <a style='float:right; background-color:#2a7877;' data-toggle="tooltip" data-placement="top" title="Edit Module" href="/module/edit/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/edit.png">
+                </a>
+            </div>
+        {% endif %}
+        {% if (current_user.email == "s_amy.tran@ousd.org") %}
+            <div class="col">
+                
+                <a style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/delete.png">
+                </a>
+                <a style='float:right; background-color:#2a7877;' data-toggle="tooltip" data-placement="top" title="Edit Module" href="/module/edit/{{module.id}}">
+                    <img class='bg-white' width="40" src="../static/edit.png">
+                </a>
+            </div>
         {% endif %}
     {% endif %}
     

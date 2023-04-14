@@ -6,7 +6,7 @@ import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import User, Module
-from app.classes.forms import MarkasCompleteForm, verifyCourseForm, ModulesForm
+from app.classes.forms import MarkasCompleteForm, verifyCourseForm, ModulesForm, clear_marked_form
 from flask_login import login_required
 import datetime as dt
 
@@ -19,12 +19,9 @@ import datetime as dt
 # This means the user must be logged in to see this page
 def moduleList():
   verified_modules = Module.objects(verified=True)
-  # courses_complete = current_user.courses_marked
-
-  # if current_user.is_authenticated:
-    # this fnction checks for if user is logged in without forcing them to login in!!
+  
   modules =  Module.objects()
-  return render_template('modules.html',verified_modules=verified_modules, modules=modules)
+  return render_template('modules.html',verified_modules=verified_modules, modules=modules )
   # italics, type on template
 
 @app.route('/module/list')
@@ -47,9 +44,9 @@ def module(moduleID):
     
     thisModule = Module.objects.get(id=moduleID)
     if form.validate_on_submit():
-      currUser.courses_marked.append(thisModule)
+      currUser.modules_completed.append(thisModule)
       # currUser.update(
-      #    courses_marked.append(thisModule)
+      #    modules_completed.append(thisModule)
       # )
       currUser.save()
 
@@ -109,8 +106,9 @@ def moduleDelete(moduleID):
   all_users=User.objects()
   if current_user.email == "s_anlisa.liu@ousd.org" or  current_user.email == "s_amy.tran@ousd.org":
     for user in all_users:
-      if deleteModule == user.courses_marked:
-        user.courses_marked.remove(deleteModule)
+      if deleteModule == user.modules_completed:
+        user.modules_completed.remove(deleteModule)
+        user.save()
     deleteModule.delete()
     flash('The Module was deleted.')
     all_unverified_modules = Module.objects(verified=False)    

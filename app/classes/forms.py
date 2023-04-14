@@ -24,6 +24,8 @@ class MarkasCompleteForm(FlaskForm):
 class verifyCourseForm(FlaskForm):
     verify_course = SubmitField('Validate Course')
 
+class clear_marked_form(FlaskForm):
+    clear = SubmitField('Clear all completion')
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = CKEditorField('Blog', validators=[DataRequired()])
