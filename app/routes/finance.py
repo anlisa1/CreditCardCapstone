@@ -13,7 +13,7 @@ import datetime as dt
 
 @app.route('/loginplease')
 def loginplease():
-  return render_template('../templates/notloggedin.html')
+  return render_template('notloggedin.html')
 
 @app.route('/Modules')
 # This means the user must be logged in to see this page
@@ -45,10 +45,11 @@ def verifyModule(moduleID):
 @app.route('/completeModule/<moduleID>')
 def completeModule(moduleID):
   # thisModule = Module.objects.get(id=moduleID)
-  currUser = User.objects.get(id=current_user.id)
+
   thisModule = Module.objects.get(id=moduleID)
 
   if current_user.is_authenticated:
+    currUser = User.objects.get(id=current_user.id)
     currUser.CompletedModules.append(thisModule)
     currUser.save()
     return redirect(url_for('module', moduleID=thisModule.id))
