@@ -12,7 +12,11 @@
     {% endif %}
     {% if module.image1 %}
         <div style="display:flex; justify-content:center; margin:5%;">
-            <img  width='65%' src="data:image;base64,{{base64encode(module.image1.read())}}">
+            {% if module.image1size %}
+                <img  width='{{module.image1size}}%' src="data:image;base64,{{base64encode(module.image1.read())}}">
+            {% else %}
+                <img  width='65%' src="data:image;base64,{{base64encode(module.image1.read())}}">
+            {% endif %}
         </div>
     {% else %}
         
@@ -83,12 +87,11 @@
     {% if module.verified == False %}
         {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
             <div style="display:flex; justify-content:space-between;">
-                <form method=post>
-                    {{adminForm.hidden_tag()}}
-                    <button class='btn' style=" border:none; background-color:#2a7877; text-decoration:none;">
-                        {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                <a href="/verifyModule/{{module.id}}" style="text-decoration:none;">
+                    <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:7%; padding-bottom:1.5%; padding-right:7%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
+                        Validate Course
                     </button>
-                </form>
+                </a>
                 <a  style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
                     <img class='bg-white' width="40" src="../static/delete.png">
                 </a>
@@ -99,12 +102,11 @@
         {% endif %}
         {% if (current_user.email == "s_amy.tran@ousd.org") %}
             <div class="col">
-                <form method=post>
-                    {{adminForm.hidden_tag()}}
-                    <button class='btn' style=" border:none; background-color:#2a7877; text-decoration:none;">
-                        {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
+                <a href="/verifyModule/{{module.id}}" style="text-decoration:none;">
+                    <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:7%; padding-bottom:1.5%; padding-right:7%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
+                        Validate Course
                     </button>
-                </form>
+                </a>
                 <a style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
                     <img class='bg-white' width="40" src="../static/delete.png">
                 </a>
@@ -118,22 +120,32 @@
     
     {% endif %}
     {% if module.verified %}
-        {% if current_user.is_anonymous %}
-
+        {% if module in current_user.CompletedModules %}
+            <h3>Completed</h3>
         {% else %}
-            {% if module in current_user.modules_completed %}
-                <h3>Completed</h3>
+            {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+
+            {% elif (current_user.email == "s_amy.tran@ousd.org") %}
+
             {% else %}
-                <form method=post>
-                    {{form.hidden_tag()}}
-                    <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                        {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
+                <a href="/completeModule/{{module.id}}" class='mb-2' style="text-decoration:none;">
+                    <button class='text-light mb-2' style=" float:right; padding:1.5% 3%;  border:none; background-color:#2a7877; border-radius:15px;">
+                        Mark as done
                     </button>
-                </form>
+                </a>
             {% endif %}
         {% endif %}
         {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
             <div style="display:flex; justify-content:space-between;">
+                {% if module in current_user.CompletedModules %}
+                    
+                {% else %}
+                    <a href="/completeModule/{{module.id}}" style="text-decoration:none;">
+                        <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:3%; padding-bottom:1.5%; padding-right:3%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
+                            Mark as done
+                        </button>
+                    </a>
+                {% endif %}
                 <a  style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
                     <img class='bg-white' width="40" src="../static/delete.png">
                 </a>
@@ -144,7 +156,15 @@
         {% endif %}
         {% if (current_user.email == "s_amy.tran@ousd.org") %}
             <div class="col">
-                
+                {% if module in current_user.CompletedModules %}
+                    
+                {% else %}
+                    <a href="/completeModule/{{module.id}}" style="text-decoration:none;">
+                        <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:3%; padding-bottom:1.5%; padding-right:3%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
+                            Mark as done
+                        </button>
+                    </a>
+                {% endif %}
                 <a style='float:right; background-color:#2a7877;'  class="ml-3 pb-2"  data-toggle="tooltip" data-placement="top" title="Delete Module" href="/module/delete/{{module.id}}">
                     <img class='bg-white' width="40" src="../static/delete.png">
                 </a>

@@ -34,9 +34,11 @@ class User(UserMixin, Document):
     prononuns = StringField()
     role = StringField()
     age = IntField()
+
+    CompletedModules=ListField()
+    # all list fields below useless
+    modulesDone=ListField()
     modules_completed=ListField()
-    
-    # courses marked gone
     courses_marked=ListField()
     # will use the above lsit for modules
     meta = {
@@ -66,6 +68,7 @@ class Module(Document):
     title = StringField()
     content1 = StringField()
     image1 = FileField()
+    image1size=IntField()
     video1 = StringField()
     content2 = StringField()
     image2 = FileField()

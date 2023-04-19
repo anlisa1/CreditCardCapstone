@@ -2,11 +2,18 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class='p-1 mt-1' style="display:flex; justify-content:center; border-radius:25%;">
+<div class='mt-1' style="display:flex; justify-content:center; border-radius:25%; border:5px black solid; padding:0%;">
 {% if verified_modules %}
     {% for course in verified_modules %}
-        {% if course in current_user.modules_completed %}
+        {% if course in current_user.CompletedModules %}
             <div class="p-3 mx-0 b-0" style='background-color:green;'>
+                ds1
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% for course in verified_modules %}
+        {% if course not in current_user.CompletedModules %}
+            <div class="p-3 mx-0 b-0" style='background-color:lightgray;'>
                 ds1
             </div>
         {% endif %}
@@ -14,7 +21,7 @@
 {% endif %}
 </div>
 
-<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules All({{verified_modules|length}}) Complete{{ current_user.modules_completed|length}}</strong></h4>
+<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules All({{verified_modules|length}}) Complete{{ current_user.CompletedModules|length}}</strong></h4>
 
 {% if verified_modules %}
     <div class='row row-cols-3' style="display:flex; justify-content:center;">

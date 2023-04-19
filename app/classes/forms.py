@@ -2,9 +2,11 @@
 # and users fill them out.  Each form is an instance of a class. Forms are managed by the 
 # Flask-WTForms library.
 
+
+
 from flask_wtf import FlaskForm
 import mongoengine.errors
-from wtforms.validators import URL, Email, DataRequired
+from wtforms.validators import URL, Email, DataRequired, NumberRange
 from wtforms.fields.html5 import URLField
 from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField
 # fields that user can edit, create update
@@ -18,14 +20,12 @@ class ProfileForm(FlaskForm):
     image = FileField("Image") 
     submit = SubmitField('Post')
     
-class MarkasCompleteForm(FlaskForm):
-    mark_completion = SubmitField('Mark as Complete')
+# class MarkasCompleteForm(FlaskForm):
+#     mark_completion = SubmitField('Mark as Complete')
 
-class verifyCourseForm(FlaskForm):
-    verify_course = SubmitField('Validate Course')
+# class verifyCourseForm(FlaskForm):
+#     verify_course = SubmitField('Validate Course')
 
-class clear_marked_form(FlaskForm):
-    clear = SubmitField('Clear all completion')
 class BlogForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = CKEditorField('Blog', validators=[DataRequired()])
@@ -38,6 +38,7 @@ class ModulesForm(FlaskForm):
     cover_image = FileField('Cover image here, will not be in the module but rather will appear in the modules page')
     content1 = CKEditorField('Leave empty if you have styling preferences')
     image1 = FileField('optional image, no image will be shown if empty')
+    image1size=IntegerField('Number between 20 and 100', validators=[NumberRange(min=20, max=100)])
     video1 = StringField('please input link to youtube video here, leave empty if none')
     content2 = CKEditorField('for formatting')
     image2 = FileField('optional image')

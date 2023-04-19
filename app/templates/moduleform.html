@@ -49,6 +49,15 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
+            <p>
+                {{ form.image1size.label }} <br>
+                {{ form.image1size(size='40') }}
+                <!--List the errors for this field-->
+                {% for error in form.image1size.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <br>
             <br>
             <p>
                 {{form.video1.label}}<br>
