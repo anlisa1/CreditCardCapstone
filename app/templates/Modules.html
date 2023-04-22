@@ -5,38 +5,40 @@
 <div class='mt-1' style="display:flex; justify-content:center;">
 {% if verified_modules %}
     {% for course in verified_modules %}
-        {% if course in current_user.modulesDone %}
+        {% if course in current_user.CompletedModules %}
             <div>
                 <div >
                     <img width='15%' style='border-radius:100%; background-color:green; padding:2%;'src="../static/check-done.png">
                 </div>
-                <p>Module {{loop.index}}</p>
+                <p style="font-size:50%; color:grey;">Module {{loop.index}}</p>
             </div>
             {% if loop.index == verified_modules|length %}
 
             {% else %}
-                <div style="border-bottom:5px green solid; margin-left:-17%; margin-bottom:10%;">
+                <div style="border-bottom:5px green solid; margin-left:-17%; margin-bottom:10%; margin-top:-1.75%;">
                     <p style="opacity:0;">---------</p>
                 </div>
             {% endif %}
         {% else %}
             <div>
                 <div>
-                    <img src="../static/futurecircle.png" width='15%' style='border-radius:100%; background-color:lightgrey; '>
+                    <img src="../static/futurecircle.png" width='17%' style='border-radius:100%; background-color:lightgrey; '>
                 </div>
-                <p>Module {{loop.index}}</p>
+                <p style="font-size:50%; color:grey;">Module {{loop.index}}</p>
             </div>
             {% if loop.index == verified_modules|length %}
 
             {% else %}
-                <div style="border-bottom:5px lightgray solid; margin-bottom:5.25%;"><p style="opacity:0;">---------</p></div>
+                <div style="border-bottom:5px lightgrey solid; margin-left:-17%; margin-bottom:10%; margin-top:-1.75%;">
+                    <p style="opacity:0;">--------------</p>
+                </div>
             {% endif %}
         {% endif %}
     {% endfor %}
 {% endif %}
 </div>
 
-<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules All({{verified_modules|length}}) Complete{{ current_user.modulesDone|length}}</strong></h4>
+<h4 style="text-align:center; color:#2a7877; margin-bottom:8%;" ><strong>Explore Modules All({{verified_modules|length}}) Complete{{ current_user.CompletedModules|length}}</strong></h4>
 
 {% if verified_modules %}
     <div class='row row-cols-3' style="display:flex; justify-content:center;">
