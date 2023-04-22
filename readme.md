@@ -10,10 +10,15 @@ pip install flask-ckeditor
 
 please install this onto the website(still learning on the above)
 
- Anlisa TD ->  fix add course button, different color (form and modules cret\ation first)
-               1. mark as done function // not applied // function tested in blogs
-               2. accounatbility and progress of module progression, progress bar of thermometer
-                3. image delete function or image sizing function
+ Anlisa TD ->  
+                2. accounatbility and progress of module progression, progress bar of thermometer
+
+                3. image delete function
+                
+                4. questions and replies section(can hide and show)
+                  //admin can delete any of these
+
+                5. quizes within modules and rankings
 
 
 Things to not:
