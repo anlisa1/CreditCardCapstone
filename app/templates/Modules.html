@@ -34,6 +34,29 @@
                 </div>
             {% endif %}
         {% endif %}
+        {% if loop.index == 4 %}
+            {% if current_user.quizComplete %}
+                <div>
+                    <div >
+                        <img width='15%' style='border-radius:100%; background-color:green; padding:2%;'src="../static/check-done.png">
+                    </div>
+                    <p style="font-size:50%; color:grey;">Personality Quiz</p>
+                </div>
+                <div style="border-bottom:5px green solid; margin-left:-17%; margin-bottom:10%; margin-top:-1.75%;">
+                    <p style="opacity:0;">---------</p>
+                </div>
+            {% else %}
+                <div>
+                    <div>
+                        <img src="../static/futurecircle.png" width='17%' style='border-radius:100%; background-color:lightgrey; '>
+                    </div>
+                    <p style="font-size:50%; color:grey;">Personality Quiz</p>
+                </div>
+                <div style="border-bottom:5px lightgrey solid; margin-left:-17%; margin-bottom:10%; margin-top:-1.75%;">
+                    <p style="opacity:0;">--------------</p>
+                </div>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endif %}
 </div>
@@ -55,9 +78,44 @@
                     <div class="card-body">
                         <strong class="card-title"> {{module.title}} </strong>
                     </div>
+                    {% if module in current_user.CompletedModules %}
+                        <div style="margin-left:5%; margin-top:-3%;">
+                            <img src="./static/complete.png" style="width:8%;">
+                            <small style="font-size:100%;">Complete</small>
+                        </div>
+                    {% else %}
+                        <div style="margin-left:5%; margin-top:-3%;">
+                            <img src="./static/incomplete.png" style="width:8%;">
+                            <small style="font-size:100%;">Incomplete</small>
+                        </div>
+                    {% endif %}
                     <br>
                 </a>
             </div>
+            {% if loop.index == 4 %}
+                <div class='col card m-2' style="width:25%; background-color:#54B6B4; border-radius:5%;">
+                    <a  href="/moduleQuiz" style='font-size:150%' class='text-light p-3 text-decoration-none'>
+                        <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                            <img  class='card-img'  style="margin-top:2%" width = "75%" src="/static/no_image.png">
+                        <br>
+                        <div class="card-body">
+                            <strong class="card-title"> Personality Quiz </strong>
+                        </div>
+                        {% if current_user.quizComplete %}
+                            <div style="margin-left:5%; margin-top:-3%;">
+                                <img src="./static/quizComplete.png" style="width:8%;">
+                                <small style="font-size:100%;">Complete</small>
+                            </div>
+                        {% else %}
+                            <div style="margin-left:5%; margin-top:-3%;">
+                                <img src="./static/personality_quiz_x.png" style="width:8%;">
+                                <small style="font-size:100%;">Incomplete</small>
+                            </div>
+                        {% endif %}
+                        <br>
+                    </a>
+                </div>
+            {% endif %}
         {% endfor %}
         <div class='col card m-2' style="width:25%; background-color:#1C6363; border-radius:5%;">
             <a  href="/module/new" style='font-size:150%' class='text-light p-3 text-decoration-none'>
@@ -67,10 +125,23 @@
                 <div class="card-body">
                     <strong class="card-title"> Add your Course </strong>
                 </div>
-                
-
             </a>
         </div>
+        <!-- ask wright -->
+        {%  if (verified_modules|length)%3 == 0 %}
+            <div class='col card m-2' style="width:25%; background-color:#1C6363; border-radius:5%;">
+                <a  href="/module/new" style='font-size:150%' class='text-light p-3 text-decoration-none'>
+                    <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                    <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
+                    <br>
+                    <div class="card-body">
+                        <strong class="card-title"> Add your Course </strong>
+                    </div>
+                </a>
+            </div>
+        {% elif (verified_modules|length)%3 == 1 %}
+            <div  class='col card m-2' style="width:25%;  border-radius:5%;">l</div>
+        {% endif %}
     </div>
 {% else %}
     <div class='col card m-2' style="width:25%; background-color:#1C6363; border-radius:5%; float:left;">

@@ -35,6 +35,7 @@ class User(UserMixin, Document):
     role = StringField()
     age = IntField()
 
+    quizComplete=BooleanField(default=False)
     CompletedModules=ListField()
     # all list fields below useless
     modulesDone=ListField()

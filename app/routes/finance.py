@@ -57,6 +57,21 @@ def completeModule(moduleID):
     return redirect(url_for('loginplease'))
 
 
+@app.route('/completeQuiz')
+def completeQuiz():
+  if current_user.is_authenticated:
+    currUser = User.objects.get(id=current_user.id)
+    currUser.update(
+      quizComplete = True
+    )
+    return redirect(url_for('quiz'))
+  else:
+    return redirect(url_for('loginplease'))
+
+@app.route('/moduleQuiz')
+def moduleQuiz():
+  return render_template('personalityQuiz.html')
+
 @app.route('/module/<moduleID>', methods=['GET', 'POST'])
 # This route will only run if the user is logged in
 # you cannot do two validate on submits at a time, only first one will run.
