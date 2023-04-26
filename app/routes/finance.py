@@ -60,10 +60,7 @@ def completeModule(moduleID):
 @app.route('/completeQuiz')
 def completeQuiz():
   if current_user.is_authenticated:
-    currUser = User.objects.get(id=current_user.id)
-    currUser.update(
-      quizComplete = True
-    )
+    # currUser = User.objects.get(id=current_user.id)
     return redirect(url_for('modules'))
   else:
     return redirect(url_for('loginplease'))
@@ -72,11 +69,11 @@ def completeQuiz():
 def quizResults():
   return render_template('personalityQuizResults.html')
 
-@app.route('/quiz')
+@app.route('/quiz', methods=['GET', 'POST'])
 def moduleQuizAccess():
   form = PersonalityQuizForm()
   currUser = User.objects.get(id=current_user.id)
-  if form.validate_on_submit:
+  if form.validate_on_submit():
     currUser.update(
       creditcard = form.creditcard.data,
       student = form.student.data,
@@ -89,14 +86,15 @@ def moduleQuizAccess():
     return redirect(url_for('quizResults'))
   return render_template('personalityQuiz.html', form=form)
 
-@app.route('/moduleQuiz', methods=['GET', 'POST'])
+@app.route('/moduleQuiz')
 def moduleQuiz():
   if current_user.is_authenticated:
     currUser = User.objects.get(id=current_user.id)
-    if currUser.quizTake:
-      return redirect(url_for('quiz'))
-    else:
+
+    if currUser.quizTake == True:
       return redirect(url_for('quizResults'))
+    else:
+      return redirect(url_for('moduleQuizAccess'))
   else:
     return render_template('quiz_without_flask.html')
 

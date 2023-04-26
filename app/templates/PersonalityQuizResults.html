@@ -5,45 +5,46 @@
 <div style="padding:10%; padding-top:0%;">
     <h5 id ='survey_title' style="font-weight:bolder; text-align:center;">Personality Quiz Results</h5>
     <br><br>
-    {% if current_user.student %}
-        <div id="for_student">
-            <p>Wells Fargo Cash Back College Card</p>
-            <p style="padding-right:1%;"> - &nbsp For students</p>
-        </div>
-    {% endif %}
-    {% if current_user.travel %}
-        {% if current_user.creditcard %}
-            <div>
-                <p>Chase Saphire Preferred</p>
-                <p style="padding-right:1%;"> - &nbsp Likes to travel</p>
+    <div style="margin-left:37%; margin-bottom:3%;">
+        {% if current_user.student  == 'Yes' %}
+            <div id="for_student">
+                <p>Wells Fargo Cash Back College Card</p>
+                <p style="padding-left:1%;"> - &nbsp For students</p>
             </div>
         {% endif %}
-    {% endif %}
-    {% if current_user.dine %}
-        <div id="for_food">
-            <p>American Express Gold</p>
-            <p style="padding-right:1%;"> - &nbsp Likes to dine out </p>
-        </div>
-    {% endif %}
-    {% if current_user.cashback %}
-        <div>
-            <a href="https://www.nerdwallet.com/reviews/credit-cards/capital-one-quicksilver">Capital One Quicksilver</a>
-            <p style="padding-right:1%;"> - &nbsp High cash back reward</p>
-        </div>
-    {% endif %}
-    {% if current_user.travel %}
-        {% if current_user.creditcard %}
-            {% if current_user.cashback %}
+        {% if current_user.travel  == 'Yes' %}
+            {% if current_user.creditcard  == 'Yes' %}
                 <div>
-                    <a href="https://www.nerdwallet.com/reviews/credit-cards/chase-freedom-unlimited">Chase Freedom Unlimited</a>
-                    <p style="padding-right:1%;"> - &nbsp Likes to travel</p>
-                    <p style="padding-right:1%;"> - &nbsp Cash Back</p>
-                    <p style="padding-right:1%;"> - &nbsp Not for people who have never had a credit card</p>
+                    <p>Chase Saphire Preferred</p>
+                    <p style="padding-left:1%;"> - &nbsp Likes to travel</p>
                 </div>
             {% endif %}
         {% endif %}
-    {% endif %}
-
+        {% if current_user.dine  == 'Yes' %}
+            <div id="for_food">
+                <p>American Express Gold</p>
+                <p style="padding-left:1%;"> - &nbsp Likes to dine out </p>
+            </div>
+        {% endif %}
+        {% if current_user.cashback  == 'Yes' %}
+            <div>
+                <a href="https://www.nerdwallet.com/reviews/credit-cards/capital-one-quicksilver">Capital One Quicksilver</a>
+                <p style="padding-left:1%;"> - &nbsp High cash back reward</p>
+            </div>
+        {% endif %}
+        {% if current_user.travel == 'Yes' %}
+            {% if current_user.creditcard  == 'Yes' %}
+                {% if current_user.cashback  == 'Yes' %}
+                    <div>
+                        <a href="https://www.nerdwallet.com/reviews/credit-cards/chase-freedom-unlimited">Chase Freedom Unlimited</a>
+                        <p style="padding-left:1%;"> - &nbsp Likes to travel</p>
+                        <p style="padding-left:1%;"> - &nbsp Cash Back</p>
+                        <p style="padding-left:1%;"> - &nbsp Not for people who have never had a credit card</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
     <div style="display:flex; justify-content:space-between;">
         {% if current_user.quizComplete == False %}
             <a href="/completeQuiz" style="text-decoration:none;">

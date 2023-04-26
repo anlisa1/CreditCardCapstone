@@ -5,7 +5,7 @@
 <div style="padding:10%; padding-top:0%;">
     <h5 id ='survey_title' style="font-weight:bolder; text-align:center;">Personality Quiz</h5>
     <br><br>
-    <form action="" method=post  enctype="multipart/form-data">
+    <form action="" method=post  enctype="multipart/form-data" style="margin-left:37%;">
         {{form.hidden_tag()}}
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.creditcard.label}}</h6>
@@ -17,6 +17,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br>
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.student.label}}</h6>
             <div style="margin-left:2%;">
@@ -27,6 +28,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br>
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.business.label}}</h6>
             <div style="margin-left:2%;">
@@ -37,6 +39,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br>
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.travel.label}}</h6>
             <div style="margin-left:2%;">
@@ -47,6 +50,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br>
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.dine.label}}</h6>
             <div style="margin-left:2%;">
@@ -57,6 +61,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br>
         <div style="margin-bottom:1%;">
             <h6 style="padding-bottom:0.5%;"> {{form.cashback.label}}</h6>
             <div style="margin-left:2%;">
@@ -67,7 +72,8 @@
                 {% endfor %}
             </div>
         </div>
-        <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+        <br><br>
+        <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none; margin-left:4%;">
             {{form.submit(class='text-light',style="border:none; background-color:#2a7877;")}}
         </button>
     </form>
