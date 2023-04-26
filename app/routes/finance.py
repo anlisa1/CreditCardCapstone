@@ -6,7 +6,7 @@ import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import User, Module
-from app.classes.forms import ModulesForm
+from app.classes.forms import ModulesForm, PersonalityQuizForm
 from flask_login import login_required
 import datetime as dt
 
@@ -64,13 +64,55 @@ def completeQuiz():
     currUser.update(
       quizComplete = True
     )
-    return redirect(url_for('quiz'))
+    return redirect(url_for('modules'))
   else:
     return redirect(url_for('loginplease'))
 
-@app.route('/moduleQuiz')
+@app.route('/quizResults')
+def quizResults():
+  return render_template('personalityQuizResults.html')
+
+@app.route('/quiz')
+def moduleQuizAccess():
+  form = PersonalityQuizForm()
+  currUser = User.objects.get(id=current_user.id)
+  if form.validate_on_submit:
+    currUser.update(
+      creditcard = form.creditcard.data,
+      student = form.student.data,
+      business = form.business.data,
+      travel = form.travel.data,
+      dine = form.dine.data, 
+      cashback = form.cashback.data,
+      quizTake = True
+    )
+    return redirect(url_for('quizResults'))
+  return render_template('personalityQuiz.html', form=form)
+
+@app.route('/moduleQuiz', methods=['GET', 'POST'])
 def moduleQuiz():
-  return render_template('personalityQuiz.html')
+  if current_user.is_authenticated:
+    currUser = User.objects.get(id=current_user.id)
+    if currUser.quizTake:
+      return redirect(url_for('quiz'))
+    else:
+      return redirect(url_for('quizResults'))
+  else:
+    return render_template('quiz_without_flask.html')
+
+
+
+@app.route('/quizRetake')
+def ModuleQuizAgain():
+  currUser = User.objects.get(id=current_user.id)
+  currUser.update(
+    quizTake = False
+  )
+  return redirect(url_for('moduleQuiz'))
+
+@app.route('/loginquiz')
+def quizLogin():
+  return render_template('quizsavenotify.html')
 
 @app.route('/module/<moduleID>', methods=['GET', 'POST'])
 # This route will only run if the user is logged in

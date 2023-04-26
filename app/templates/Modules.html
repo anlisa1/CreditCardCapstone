@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class='mt-1' style="display:flex; justify-content:center;">
+<div class='mt-1' style="display:flex; justify-content:center; padding-left: 1%;">
 {% if verified_modules %}
     {% for course in verified_modules %}
         {% if course in current_user.CompletedModules %}

@@ -1,166 +1,76 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 <div style="padding:10%; padding-top:0%;">
     <h5 id ='survey_title' style="font-weight:bolder; text-align:center;">Personality Quiz</h5>
     <br><br>
-    
-    <div id="survey">
+    <form action="" method=post  enctype="multipart/form-data">
+        {{form.hidden_tag()}}
         <div style="margin-bottom:1%;">
-            <h6 style="padding-bottom:0.5%;"> Have you ever had a credit card?</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='card' value="card yes" id="card_yes">
-                    <label for = "card_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='card' value="card no" id="card_no">
-                    <label for = "card_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.creditcard.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.creditcard() }}
+                <!--List the errors for this field-->
+                {% for error in form.creditcard.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h6>Are you a student?</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='student' value="student yes" id="student_yes">
-                    <label for = "student_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='student' value="student no" id="student_no">
-                    <label for = "student_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.student.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.student() }}
+                <!--List the errors for this field-->
+                {% for error in form.student.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h6>Do you have a business</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='business' value="business yes" id="business_yes">
-                    <label for = "business_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='business' value="" id="business_no">
-                    <label for = "business_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.business.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.business() }}
+                <!--List the errors for this field-->
+                {% for error in form.business.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h6>Do you frequently travel overseas?</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='travel' value="travel yes" id="travel_yes">
-                    <label for = "travel_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='travel' value="travel sometimes" id="travel_sometimes">
-                    <label for = "travel_sometimes"> Sometimes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='travel' value="travel no" id="travel_no">
-                    <label for = "travel_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.travel.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.travel() }}
+                <!--List the errors for this field-->
+                {% for error in form.travel.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h6>Do you dine out often?</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='food' value="eat out yes" id="dine_yes">
-                    <label for = "dine_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='food' value="eat out sometimes" id="dine_sometimes">
-                    <label for = "dine_sometimes"> Sometimes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='food' value="eat out no" id="dine_no">
-                    <label for = "dine_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.dine.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.dine() }}
+                <!--List the errors for this field-->
+                {% for error in form.dine.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
         <div style="margin-bottom:1%;">
-            <h6>Is getting a high cashback reward important to you</h6>
-            <div style="margin-left:1%;">
-                <div>
-                    <input type ='radio' name ='cashback' value="cashback yes" id="cashback_yes">
-                    <label for = "cashback_yes"> Yes</label>
-                </div>
-                <div>
-                    <input type ='radio' name ='cashback' value="cashback maybe" id="cashback_maybe">
-                    <label for = "cashback_maybe"> Maybe </label>
-                </div>
-                <div>
-                    <input type ='radio' name ='cashback' value="cashback no" id="cashback_no">
-                    <label for = "cashback_no"> No</label>
-                </div>
+            <h6 style="padding-bottom:0.5%;"> {{form.cashback.label}}</h6>
+            <div style="margin-left:2%;">
+                {{form.cashback() }}
+                <!--List the errors for this field-->
+                {% for error in form.cashback.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
         </div>
-        <button id='submit' class='text-light' style="margin-top:3%; padding-top:1.5%; padding-left:3%; padding-bottom:1.5%; padding-right:3%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">Submit</button>
-    </div>
-    <div class="answers">
-        <div id="for_student">
-            <p>Wells Fargo Cash Back College Card</p>
-            <p style="padding-right:1%;"> - &nbsp For students</p>
-        </div>
-        <div id="for_travel">
-            <p>Chase Saphire Preferred</p>
-            <p style="padding-right:1%;"> - &nbsp Likes to travel</p>
-        </div>
-        <div id="for_cashback">
-            <a href="https://www.nerdwallet.com/reviews/credit-cards/capital-one-quicksilver">Capital One Quicksilver</a>
-            <p style="padding-right:1%;"> - &nbsp High cash back reward</p>
-        </div>
-        <div id="for_">
-            <a href="https://www.nerdwallet.com/reviews/credit-cards/chase-freedom-unlimited">Chase Freedom Unlimited</a>
-            <p style="padding-right:1%;"> - &nbsp Likes to travel</p>
-            <p style="padding-right:1%;"> - &nbsp Cash Back</p>
-            <p style="padding-right:1%;"> - &nbsp Not for people who have never had a credit card</p>
-        </div>
-        <div id="for_food">
-            <p>American Express Gold</p>
-            <p style="padding-right:1%;"> - &nbsp Likes to dine out </p>
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script>
-        $("#for_").hide();
-        $("#for_food").hide();
-        $("#for_cashback").hide();
-        $("#for_travel").hide();
-        $("#for_student").hide();
-        $("#submit").click(function(){
-            // $("#for_").hide();
-            // $("#for_food").hide();
-            // $("#for_cashback").hide();
-            // $("#for_travel").hide();
-            // $("#for_student").hide();
-            $("#survey").hide();
-            $("#survey_title").text("Personality Quiz Results");
-            // if ($('input[name="card"]:checked').val() =="card yes"){
-
-            // }
-            // else if($('input[name="card"]:checked').val() =="card no"){
-
-            // }
-            if($('input[name="student"]:checked').val() =="student yes"){
-                $("#for_student").show();
-            }
-            if($('input[name="travel"]:checked').val() =="travel yes"){
-                $("#for_travel").show();
-                if($('input[name="card"]:checked').val() =="card yes"){
-                    $("#for_").show();
-                }
-            }
-            if($('input[name="food"]:checked').val() =="eat out yes"){
-                $("#for_food").show();
-            }
-            if($('input[name="cashback"]:checked').val() =="cashback yes"){
-                $("#for_cashback").show();
-            }
-        });
-    </script>
-    
+        <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
+            {{form.submit(class='text-light',style="border:none; background-color:#2a7877;")}}
+        </button>
+    </form>
 </div>
 
 {% endblock %}

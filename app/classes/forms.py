@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 import mongoengine.errors
 from wtforms.validators import URL, Email, DataRequired, NumberRange
 from wtforms.fields.html5 import URLField
-from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField
+from wtforms import StringField, SubmitField, TextAreaField, IntegerField, SelectField, FileField, BooleanField, RadioField
 # fields that user can edit, create update
 from flask_ckeditor import CKEditorField
 
@@ -19,6 +19,16 @@ class ProfileForm(FlaskForm):
     age = IntegerField('Age')
     image = FileField("Image") 
     submit = SubmitField('Post')
+
+class PersonalityQuizForm(FlaskForm):
+    # RadioField('Label', choices=[('value','description'),('value_two','whatever')])
+    creditcard = RadioField('Have you ever had a credit card?', choices=[(True,'Yes'),(False,'No')])
+    student = RadioField('Are you a student?', choices=[(True,'Yes'),(False,'No')])
+    business = RadioField('Do you have a business?', choices=[(True,'Yes'),(False,'No')])
+    travel = RadioField('Do you frequently travel overseas?', choices=[(True,'Yes'),(False,'Sometimes'),(False,'No')])
+    dine = RadioField('Do you dine out often?', choices=[(True,'Yes'),(False,'Sometimes'),(False,'No')])
+    cashback = RadioField('Is getting a high cashback reward important to you?', choices=[(True,'Yes'),(False,'Sometimes'),(False,'No')])
+    submit = SubmitField('Answer')
     
 # class MarkasCompleteForm(FlaskForm):
 #     mark_completion = SubmitField('Mark as Complete')

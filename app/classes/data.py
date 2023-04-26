@@ -35,6 +35,16 @@ class User(UserMixin, Document):
     role = StringField()
     age = IntField()
 
+    # quiz results saved here
+    creditcard = StringField()
+    student = StringField()
+    business = StringField()
+    travel = StringField()
+    dine = StringField()
+    cashback = StringField()
+    quizTake = BooleanField(default=False)
+    
+    # for the quiz and modules below
     quizComplete=BooleanField(default=False)
     CompletedModules=ListField()
     # all list fields below useless
