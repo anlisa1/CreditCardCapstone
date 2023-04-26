@@ -26,7 +26,7 @@ def moduleList():
 
 @app.route('/verify')
 def verifyList():
-  if current_user.email=='s_anlisa.liu@ousd.org' or  current_user.email=='s_amy.tran@ousd.org':
+  if current_user.email=='anlisa.liu2468@gmail.com' or  current_user.email=='amytran2303@gmail.com':
     all_unverified_modules = Module.objects(verified=False)  
     modules =  Module.objects()  
     return render_template('verify_modules.html', unverified_modules = all_unverified_modules, modules=modules)
@@ -168,7 +168,7 @@ def moduleNew():
 def moduleDelete(moduleID):
   deleteModule = Module.objects.get(id=moduleID)
   all_users=User.objects()
-  if current_user.email == "s_anlisa.liu@ousd.org" or  current_user.email == "s_amy.tran@ousd.org":
+  if current_user.email == "anlisa.liu2468@gmail.com" or  current_user.email == "amytran2303@gmail.com":
     for user in all_users:
       if deleteModule == user.CompletedModules:
         user.CompletedModules.remove(deleteModule)

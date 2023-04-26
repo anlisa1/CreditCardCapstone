@@ -106,9 +106,9 @@ def callback():
     # 'hd': 'ousd.org'
     # }
 
-    if userinfo_response.json().get("hd") != "ousd.org":
-        flash("You must have an ousd.org email account to access this site.")
-        return "You must have an ousd.org email account to access this site.", 400
+    # if userinfo_response.json().get("hd") != "ousd.org":
+    #     flash("You must have an ousd.org email account to access this site.")
+    #     return "You must have an ousd.org email account to access this site.", 400
 
     # We want to make sure their email is verified.
     # The user authenticated with Google, authorized our
@@ -127,20 +127,20 @@ def callback():
     try:
         thisUser=User.objects.get(email=gmail)
     except mongoengine.errors.DoesNotExist:
-        if userinfo_response.json().get("hd") == "ousd.org":
-            thisUser = User(
-                gid=gid, 
-                gname=gname, 
-                email=gmail, 
-                gprofile_pic=gprofile_pic,
-                fname = gfname,
-                lname = glname
-            )
-            thisUser.save()
-            thisUser.reload()
-        else:
-            flash("You must have an ousd.org email to login to this site.")
-            return redirect(url_for('index'))
+        #if userinfo_response.json().get("hd") == "ousd.org":
+        thisUser = User(
+            gid=gid, 
+            gname=gname, 
+            email=gmail, 
+            gprofile_pic=gprofile_pic,
+            fname = gfname,
+            lname = glname
+        )
+        thisUser.save()
+        thisUser.reload()
+        # else:
+        #     flash("You must have an ousd.org email to login to this site.")
+        #     return redirect(url_for('index'))
     else:
         thisUser.update(
             gid=gid, 

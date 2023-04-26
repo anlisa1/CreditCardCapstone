@@ -85,38 +85,6 @@
         <h1 class="display-5">No Comments</h1>
     {% endif %}
     <br>
-    {% if blog not in verified_list %}
-        {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
-            <form method=post>
-                {{adminForm.hidden_tag()}}
-                <button id ='need_confetti' style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
-        {% endif %}
-        {% if (current_user.email == "s_amy.tran@ousd.org") %}
-            <form method=post>
-                {{adminForm.hidden_tag()}}
-                <button style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{adminForm.verify_course(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
-        {% endif %}
-    {% else %}
-       
-    {% endif %}
-    {% if blog in verified_list %}
-        {% if blog in current_user.courses_completed %}
-            <form method=post>
-                {{form.hidden_tag()}}
-                <button class="confetti_button" style=" border:none; background-color:#2a7877; border-radius:15px; padding:0.5%; text-decoration:none;">
-                    {{form.mark_completion(class='text-light',style="border:none; background-color:#2a7877;")}}
-                </button>
-            </form>
-        {% else %}
-
-        {% endif %}
-    {% endif %}
     
 {% else %}
     <h1 class="display-5">No Blog</h1>

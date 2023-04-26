@@ -85,7 +85,7 @@
     {% endif %}
 </div>
     {% if module.verified == False %}
-        {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+        {% if (current_user.email == "anlisa.liu2468@gmail.com") %}
             <div style="display:flex; justify-content:space-between;">
                 <a href="/verifyModule/{{module.id}}" style="text-decoration:none;">
                     <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:7%; padding-bottom:1.5%; padding-right:7%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
@@ -100,7 +100,7 @@
                 </a>
             </div>
         {% endif %}
-        {% if (current_user.email == "s_amy.tran@ousd.org") %}
+        {% if (current_user.email == "amytran2303@gmail.com") %}
             <div class="col">
                 <a href="/verifyModule/{{module.id}}" style="text-decoration:none;">
                     <button class='text-light' style=" float:right; margin-top:5%; padding-top:1.5%; padding-left:7%; padding-bottom:1.5%; padding-right:7%; border:none; background-color:#2a7877; border-radius:15px; text-decoration:none;">
@@ -123,9 +123,9 @@
         {% if module in current_user.CompletedModules %}
             <h3>Completed</h3>
         {% else %}
-            {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+            {% if (current_user.email == "anlisa.liu2468@gmail.com") %}
 
-            {% elif (current_user.email == "s_amy.tran@ousd.org") %}
+            {% elif (current_user.email == "amytran2303@gmail.com") %}
 
             {% else %}
                 <a href="/completeModule/{{module.id}}" class='mb-2' style="text-decoration:none;">
@@ -136,7 +136,7 @@
                 <br><br><br><br>
             {% endif %}
         {% endif %}
-        {% if (current_user.email == "s_anlisa.liu@ousd.org") %}
+        {% if (current_user.email == "anlisa.liu2468@gmail.com") %}
             <div style="display:flex; justify-content:space-between;">
                 {% if module in current_user.CompletedModules %}
                     
@@ -155,7 +155,7 @@
                 </a>
             </div>
         {% endif %}
-        {% if (current_user.email == "s_amy.tran@ousd.org") %}
+        {% if (current_user.email == "amytran2303@gmail.com") %}
             <div class="col">
                 {% if module in current_user.CompletedModules %}
                     
