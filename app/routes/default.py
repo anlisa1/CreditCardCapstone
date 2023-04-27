@@ -18,10 +18,6 @@ def contact():
 def research():
     return render_template('Research.html')
 
-@app.route('/modules')
-def courses():
-    return render_template('Modules.html')
-
 @app.route('/old_modules')
 def old_modules_page():
     return render_template('Modules_backup.html')
