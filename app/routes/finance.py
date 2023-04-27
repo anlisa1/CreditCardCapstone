@@ -21,7 +21,7 @@ def moduleList():
   verified_modules = Module.objects(verified=True)
   
   modules =  Module.objects()
-  return render_template('modules.html',verified_modules=verified_modules, modules=modules )
+  return render_template('Modules.html',verified_modules=verified_modules, modules=modules )
   # italics, type on template
 
 @app.route('/verify')
@@ -175,8 +175,7 @@ def moduleDelete(moduleID):
         user.save()
     deleteModule.delete()
     flash('The Module was deleted.')
-    all_unverified_modules = Module.objects(verified=False)    
-    return render_template('verify_modules.html', unverified_modules = all_unverified_modules)
+    redirect(url_for('verifyList'))
   else:
       flash("Only Admins can delete, why are you here?")
       return redirect(url_for('index'))

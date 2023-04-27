@@ -23,10 +23,10 @@ client = WebApplicationClient(secrets['GOOGLE_CLIENT_ID'])
 
 # When a route is decorated with @login_required and fails this code is run
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.unauthorized_handler
-@login_manager.unauthorized_handler
-def unauthorized():
-    flash("You must be logged in to access that content.")
-    return redirect(url_for('index'))
+# @login_manager.unauthorized_handler
+# def unauthorized():
+#     flash("You must be logged in to access that content.")
+#     return redirect(url_for('index'))
 
 # Flask-Login helper to retrieve a user object from our db
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
