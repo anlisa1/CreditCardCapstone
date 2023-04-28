@@ -129,18 +129,31 @@
         </div>
         <!-- ask wright -->
         {%  if (verified_modules|length)%3 == 0 %}
-            <div class='col card m-2' style="width:25%; background-color:#1C6363; border-radius:5%;">
-                <a  href="/module/new" style='font-size:150%' class='text-light p-3 text-decoration-none'>
+            <div class='col card m-2' style=" opacity:0; width:25%; background-color:#1C6363; border-radius:5%;">
                     <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
                     <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
                     <br>
                     <div class="card-body">
                         <strong class="card-title"> Add your Course </strong>
                     </div>
-                </a>
             </div>
-        {% elif (verified_modules|length)%3 == 1 %}
-            <div  class='col card m-2' style="width:25%;  border-radius:5%;">l</div>
+        {% elif (verified_modules|length)%3 == 2 %}
+        <div class='col card m-2' style=" opacity:0; width:25%; background-color:#1C6363; border-radius:5%;">
+                <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
+                <br>
+                <div class="card-body">
+                    <strong class="card-title"> Add your Course </strong>
+                </div>
+        </div>
+        <div class='col card m-2' style=" opacity:0; width:25%; background-color:#1C6363; border-radius:5%;">
+                <!-- style="text-decoration:none; padding:1.5%; padding-bottom:3%; background-color:#54B6B4; color:white; border-radius:5%; " -->
+                <img src="./static/plus.jpg" style=" width:100%; margin-bottom:9%; background-color: white; border-radius:10%;">
+                <br>
+                <div class="card-body">
+                    <strong class="card-title"> Add your Course </strong>
+                </div>
+        </div>
         {% endif %}
     </div>
 {% else %}
