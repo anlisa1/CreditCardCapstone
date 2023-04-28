@@ -176,10 +176,10 @@ def moduleDelete(moduleID):
     deleteModule.delete()
     flash('The Module was deleted.')
     all_unverified_modules = Module.objects(verified=False)  
-    redirect(url_for('verifyList', unverified_modules = all_unverified_modules))
+    return redirect(url_for('verifyList', unverified_modules = all_unverified_modules))
   else:
-      flash("Only Admins can delete, why are you here?")
-      return redirect(url_for('index'))
+    flash("Only Admins can delete, why are you here?")
+    return redirect(url_for('index'))
 
    
           
