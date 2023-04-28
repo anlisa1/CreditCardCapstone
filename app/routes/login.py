@@ -127,17 +127,17 @@ def callback():
     try:
         thisUser=User.objects.get(email=gmail)
     except mongoengine.errors.DoesNotExist:
-        #if userinfo_response.json().get("hd") == "ousd.org":
-        thisUser = User(
-            gid=gid, 
-            gname=gname, 
-            email=gmail, 
-            gprofile_pic=gprofile_pic,
-            fname = gfname,
-            lname = glname
-        )
-        thisUser.save()
-        thisUser.reload()
+        # if userinfo_response.json().get("hd") == "ousd.org":
+            thisUser = User(
+                gid=gid, 
+                gname=gname, 
+                email=gmail, 
+                gprofile_pic=gprofile_pic,
+                fname = gfname,
+                lname = glname
+            )
+            thisUser.save()
+            thisUser.reload()
         # else:
         #     flash("You must have an ousd.org email to login to this site.")
         #     return redirect(url_for('index'))

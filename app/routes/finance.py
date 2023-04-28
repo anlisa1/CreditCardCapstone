@@ -67,7 +67,7 @@ def completeQuiz():
 
 @app.route('/quizResults')
 def quizResults():
-  return render_template('personalityQuizResults.html')
+  return render_template('PersonalityQuizResults.html')
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def moduleQuizAccess():
@@ -175,7 +175,8 @@ def moduleDelete(moduleID):
         user.save()
     deleteModule.delete()
     flash('The Module was deleted.')
-    redirect(url_for('verifyList'))
+    all_unverified_modules = Module.objects(verified=False)  
+    redirect(url_for('verifyList', unverified_modules = all_unverified_modules))
   else:
       flash("Only Admins can delete, why are you here?")
       return redirect(url_for('index'))
