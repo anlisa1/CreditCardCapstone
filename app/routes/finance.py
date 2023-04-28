@@ -60,8 +60,11 @@ def completeModule(moduleID):
 @app.route('/completeQuiz')
 def completeQuiz():
   if current_user.is_authenticated:
-    # currUser = User.objects.get(id=current_user.id)
-    return redirect(url_for('modules'))
+    currUser = User.objects.get(id=current_user.id)
+    currUser.update(
+      quizComplete = True
+    )
+    return redirect(url_for('moduleList'))
   else:
     return redirect(url_for('loginplease'))
 
