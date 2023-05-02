@@ -52,7 +52,8 @@ def completeModule(moduleID):
     currUser = User.objects.get(id=current_user.id)
     currUser.CompletedModules.append(thisModule)
     currUser.save()
-    return redirect(url_for('moduleList'))
+    verified_modules = Module.objects(verified=True)
+    return redirect(url_for('moduleList',verified_modules=verified_modules, modules=modules ))
   else:
     return redirect(url_for('loginplease'))
 
@@ -64,7 +65,8 @@ def completeQuiz():
     currUser.update(
       quizComplete = True
     )
-    return redirect(url_for('moduleList'))
+    verified_modules = Module.objects(verified=True)
+    return redirect(url_for('moduleList',verified_modules=verified_modules, modules=modules ))
   else:
     return redirect(url_for('loginplease'))
 
