@@ -1,6 +1,4 @@
-
 # Created, Read, Updated or Deleted (CRUD)
-
 from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
@@ -104,8 +102,6 @@ def moduleQuiz():
   else:
     return render_template('quiz_without_flask.html')
 
-
-
 @app.route('/quizRetake')
 def ModuleQuizAgain():
   currUser = User.objects.get(id=current_user.id)
@@ -186,10 +182,6 @@ def moduleDelete(moduleID):
   else:
     flash("Only Admins can delete, why are you here?")
     return redirect(url_for('index'))
-
-   
-          
-
 
 @app.route('/module/edit/<moduleID>', methods=['GET', 'POST'])
 @login_required
@@ -273,8 +265,6 @@ def moduleEdit(moduleID):
     form.content4.data = editModule.content4
     # fom database, prepopulate the form
 
-
     # Send the user to the blog form that is now filled out with the current information
     # from the form.
     return render_template('moduleform.html',form=form)
-
