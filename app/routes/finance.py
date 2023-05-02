@@ -45,7 +45,7 @@ def verifyModule(moduleID):
 @app.route('/completeModule/<moduleID>')
 def completeModule(moduleID):
   # thisModule = Module.objects.get(id=moduleID)
-
+  verified_modules = Module.objects(verified=True)
   thisModule = Module.objects.get(id=moduleID)
 
   if current_user.is_authenticated:
@@ -53,6 +53,7 @@ def completeModule(moduleID):
     currUser.CompletedModules.append(thisModule)
     currUser.save()
     verified_modules = Module.objects(verified=True)
+    modules =  Module.objects()
     return redirect(url_for('moduleList',verified_modules=verified_modules, modules=modules ))
   else:
     return redirect(url_for('loginplease'))
@@ -66,7 +67,7 @@ def completeQuiz():
       quizComplete = True
     )
     verified_modules = Module.objects(verified=True)
-    return redirect(url_for('moduleList',verified_modules=verified_modules, modules=modules ))
+    return redirect(url_for('moduleList',verified_modules=verified_modules))
   else:
     return redirect(url_for('loginplease'))
 
