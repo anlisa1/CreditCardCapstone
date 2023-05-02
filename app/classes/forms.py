@@ -48,7 +48,7 @@ class ModulesForm(FlaskForm):
     cover_image = FileField('Cover image here, will not be in the module but rather will appear in the modules page')
     content1 = CKEditorField('Leave empty if you have styling preferences')
     image1 = FileField('optional image, no image will be shown if empty')
-    image1size=IntegerField('Number between 20 and 100', validators=[NumberRange(min=20, max=100)])
+    image1size=IntegerField('Number between 20 and 100 for the image sizes, put random number if none for the above image', validators=[NumberRange(min=20, max=100)], )
     video1 = StringField('please input link to youtube video here, leave empty if none')
     content2 = CKEditorField('for formatting')
     image2 = FileField('optional image')

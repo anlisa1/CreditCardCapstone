@@ -193,10 +193,25 @@ def moduleDelete(moduleID):
 def moduleEdit(moduleID):
     editModule = Module.objects.get(id=moduleID)
     # if request edit, user is author then  go, if not go back,
-    if current_user != editModule.author:
-        flash("You can't edit a module you don't own.")
-        return redirect(url_for('module',moduleID=moduleID))
-
+    if editModule.verified == False:
+      if current_user != editModule.author:
+        pass
+      else:
+        if current_user.email != 'amytran2303@gmail.com':
+          pass
+        else:
+          if current_user.email != 'anlisa.liu2468@gmail.com':
+            flash("Sorry, this module is only for admins, don't touch! at")
+            return redirect(url_for('module', moduleID=moduleID))
+    else:
+      if current_user.email != 'amytran2303@gmail.com':
+        pass
+      else:
+        if current_user.email != 'anlisa.liu2468@gmail.com':
+          flash("Sorry, this module is only for admins, don't touch! at")
+          return redirect(url_for('module', moduleID=moduleID))
+      
+    
     form = ModulesForm()
     # If the user has submitted the form then update the course
     if form.validate_on_submit():
