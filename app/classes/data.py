@@ -79,7 +79,7 @@ class Module(Document):
     title = StringField()
     content1 = StringField()
     image1 = FileField()
-    image1size=IntField(default=70)
+    image1size=IntField()
     video1 = StringField()
     content2 = StringField()
     image2 = FileField()
