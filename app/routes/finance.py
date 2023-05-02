@@ -52,7 +52,7 @@ def completeModule(moduleID):
     currUser = User.objects.get(id=current_user.id)
     currUser.CompletedModules.append(thisModule)
     currUser.save()
-    return redirect(url_for('module', moduleID=thisModule.id))
+    return redirect(url_for('moduleList'))
   else:
     return redirect(url_for('loginplease'))
 
